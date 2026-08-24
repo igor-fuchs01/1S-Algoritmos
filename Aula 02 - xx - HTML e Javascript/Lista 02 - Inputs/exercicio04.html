@@ -1,0 +1,38 @@
+<!-- 4. Onde Eu Moro 
+Crie uma página que solicite ao usuário:
+
+Um campo para inserir o Nome da Rua/Avenida/Vila
+Um campo para inserir o Número da Casa
+Um botão com o texto "Onde eu moro"
+Ao clicar no botão, as seguintes mensagens devem aparecer:
+"Seu logradouro é X" (onde X é o nome da rua/avenida digitada)
+"O número do seu logradouro é Y" (onde Y é o número da casa informado) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 04</title>
+</head>
+<body>
+    <div>
+        <span>Nome do Rua/Avenida/Vila:</span>
+        <input type="text" id="nome_rua" placeholder="Ex: Rua Haddock Lobo, Avenida Martino Basso...">
+        <br />
+    </div>
+    <div>
+        <span>Número da Casa:</span>
+        <input type="number" id="num_casa" placeholder="Ex: 520, 1004, 320...">
+        <br />
+    </div>
+    <button onclick="ondeMoro()">Onde eu moro</button>
+
+</body>
+</html>
+<script>
+    function ondeMoro(){
+        alert('Seu logradouro é ' + nome_rua.value);
+        alert('O número do seu logradouro é ' + num_casa.value);
+    }
+</script>

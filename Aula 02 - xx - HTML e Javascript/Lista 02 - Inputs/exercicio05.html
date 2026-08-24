@@ -1,0 +1,36 @@
+<!-- 5. Opinião da família 
+Crie um programa que:
+
+Tenha um campo para inserir a sua nota na escola
+Tenha um botão "opinião da avó"
+Tenha um botão "opinião da mãe"
+Ao clicar num botão "opinião da avó", em um alerta, exibir "Muito bem, que neto inteligente, porque tirou X".
+Ao clicar num botão "opinião da mãe", em um alerta, exibir "Não fez mais que tua obrigação com essa nota X".
+         (Onde X é a nota que ele digitou.)
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 05</title>
+  </head>
+  <body>
+    <div>
+      <span>Insira sua nota: </span>
+      <input id="input_nota" type="number" placeholder="Ex: 10, 9, 5..." />
+    </div>
+      <button onclick="opiniaoVo()">Opinião da avó</button>
+      <br />
+      <button onclick="opiniaoMae()">Opinião da mãe</button>
+  </body>
+</html>
+<script>
+  function opiniaoVo() {
+    alert("Muito bem, que neto inteligente, porque tirou " + input_nota.value);
+  }
+  function opiniaoMae() {
+    alert("Não fez mais que tua obrigação com essa nota " + input_nota.value);
+  }
+</script>

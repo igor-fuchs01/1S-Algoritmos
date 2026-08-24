@@ -1,0 +1,96 @@
+<!-- 4. Controle de TVM de caldeira de geração energia elétrica
+
+A manutenção da caldeira de energia elétrica tem um tempo de vida de manutenção (TVM) de 1000 horas, sendo que utilização 
+diária da caldeira e eventos que podem interromper seu processo, diminuem o TVM. A cada manutenção realizada, o TVM volta para 1000 horas. 
+
+Faça um programa para controlar o TVM da caldeira, sendo que:
+
+a) Receba a quantidade de dias em operação e tenha um botão “Processar DIAS”, que quando clicado, irá subtrair as horas desses dias (24 horas por dia) do TVM, e emitir a mensagem (sem apagar as mensagens anteriores):
+
+    O TVM anterior era de XXXX horas e após YY dias de operação o TVM passou para ZZZ horas
+
+Sendo que:
+
+    XXXX são as horas existentes no TVM antes da subtração.
+
+    YY é a quantidade de dias informado pelo usuário
+
+    ZZZ é o novo saldo de horas do TVM, após a subtração
+
+b) Tenha um botão “Stop Operação”, que quando clicado irá subtrair 100 horas do TVM e emitir a mensagem (sem apagar as mensagens anteriores):
+
+    O TVM anterior era de XXXX horas, após o Stop de operação o TVM passou para ZZZ horas
+
+Sendo que:
+
+    XXXX são as horas existentes no TVM antes da subtração.
+
+    ZZZ  é o novo saldo de horas do TVM, após a subtração 
+
+c) Tenha um botão “Reiniciar Processo”, que quando clicado irá alterar para 1000 horas o saldo do TVM, vai limpar as mensagens anteriores  e emitirá a mensagem:
+
+    Ainda existia  XXXX horas, com o reinicio do processo, o TVM passou para 1000 horas.
+
+Sendo que:
+
+    XXXX são as horas existentes no TVM antes da subtração.
+
+      
+
+Exemplo do item c)
+
+Interface gráfica do usuário, Texto, Aplicativo, Email
+
+
+ 
+
+Exemplo do item a) e b)
+
+Interface gráfica do usuário, Texto, Aplicativo
+
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 04</title>
+  </head>
+  <body>
+    <h1>Gestão do TVM de Caldeira</h1>
+    <span>Quantidade de dias de operação:</span>
+    <input id="input_processar" type="text" />
+    <button onclick="processar()">Processar Dias</button>
+    <br />
+    <br />
+    <button onclick="stop()">Stop Operação</button>
+    <button onclick="reiniciar()">Reiniciar Processo</button>
+    <br />
+    <br />
+    <div id="div_exibir"></div>
+  </body>
+</html>
+<script>
+    let horasRestantes = 1000;
+    
+    function processar(){
+        let diasProcessando = Number(input_processar.value);
+        let horasAnteriores = horasRestantes;
+        horasRestantes = horasRestantes - diasProcessando * 24;
+    
+        div_exibir.innerHTML += `O TVM anterior era de ${horasAnteriores} horas e após ${diasProcessando} dias de operação o TVM passou para ${horasRestantes} horas <br> <br>`;
+    }
+
+    function stop(){
+        let horasAnteriores = horasRestantes;
+        horasRestantes = horasRestantes - 100;
+
+        div_exibir.innerHTML += `O TVM anterior era de ${horasAnteriores} horas, após o Stop de operação o TVM passou para ${horasRestantes} horas <br> <br>`;
+    }
+    function reiniciar(){
+        let horasAnteriores = horasRestantes;
+        horasRestantes = 1000;
+        div_exibir.innerHTML = ` Ainda existia ${horasAnteriores} horas, com o reinicio do processo, o TVM passou para 1000 horas.`;
+    }
+</script>

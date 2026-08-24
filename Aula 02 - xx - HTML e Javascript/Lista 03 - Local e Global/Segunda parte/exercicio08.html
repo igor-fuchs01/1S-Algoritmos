@@ -1,0 +1,63 @@
+<!-- 8. Cálculo do Vale Transporte 
+
+Crie um programa o qual:   
+
+a) Solicite o valor da passagem de ônibus;  
+
+b) Solicite a quantidade de viagens que o usuário faz por mês;  
+
+c) Solicite a distância do trabalho dele até sua casa (em km);  
+
+d) Ao clicar em "Calcular VT" calcule e exiba na tela quanto o usuário gastará por mês com transporte com uma frase como esta:  
+
+   Você vai gastar R$X por mês com transporte.  
+
+OBS: considere que uma viagem de Uber (99, cabify, etc) custa R$0,75 por km (ou seja, uma viagem de 10km custará R$7,50).  
+
+OBS2: considere que o número de viagens de Uber (99, cabify, etc) que o usuário faz por mês é de 10% do número de viagens de ônibus (ou seja, se ele indicar que faz 50 viagens, considere 45 viagens de ônibus e 5 viagens de aplicativo).   -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 08</title>
+  </head>
+  <body>
+    <div>
+      <span>Insira o valor da passagem do ônibus:</span>
+      <input type="number" id="input_valor_onibus" />
+    </div>
+
+    <div>
+      <span>Insira a quantidade de viagens feitas por mês:</span>
+      <input type="number" id="input_qtd_viagens" />
+    </div>
+
+    <div>
+      <span>Insira a distância do trabalho até a sua casa (km)</span>
+      <input type="number" id="input_distancia_km" />
+    </div>
+
+    <button onclick="calcularVT()">Calcular VT</button>
+    <div id="div_exibir"></div>
+  </body>
+</html>
+<script>
+  function calcularVT() {
+    let valorOnibus = Number(input_valor_onibus.value);
+    let qtdViagens = Number(input_qtd_viagens.value);
+    let distanciaKm = Number(input_distancia_km.value);
+
+    // Calcula a quantidade de viagens, usando os 10% feito pelo uber
+    let qtdViagensUber = qtdViagens * 0.1;
+    let qtdViagensOnibus = qtdViagens - qtdViagensUber; // Usa o restante das viagens
+
+    // Calcula resultado dos valores
+    let resultadoUber = 0.75 * qtdViagensUber * distanciaKm;
+    let resultadoOnibus = qtdViagensOnibus * valorOnibus;
+    let resultado = resultadoUber + resultadoOnibus;
+
+    div_exibir.innerHTML = `Você vai gastar R$${resultado} por mês com transporte.`;
+  }
+</script>

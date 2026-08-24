@@ -1,0 +1,36 @@
+<!-- 1. Atualizar saldo bancário
+
+Crie um programa que:  
+
+a) Tenha os botões “Receber 100” e “Pagar 50”.  
+
+b) Ao clicar em “Receber 100”, atualize o saldo do usuário e exiba a mensagem “Transferência de R$100 recebida! Saldo atual: R$Y”. 
+
+c) Ao clicar em “Pagar 50”, atualize o saldo do usuário e exiba a mensagem “Pagamento de R$50 efetuado! Saldo atual: R$Y”. 
+
+OBS: o valor do saldo se inicia em 0, para depois ir reduzindo/incrementando de acordo com a operação realizada  -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 01</title>
+  </head>
+  <body>
+    <button onclick="receberCem()">Receber 100</button>
+    <button onclick="pagarCinquenta()">Pagar 50</button>
+    <div id="div_exibir"></div>
+  </body>
+</html>
+<script>
+  let saldo = 0;
+  function pagarCinquenta() {
+    saldo -= 50;
+    div_exibir.innerHTML = `Pagamento de R$50 efetuado! Saldo atual: R$${saldo}`;
+  };
+  function receberCem() {
+    saldo += 100;
+    div_exibir.innerHTML = `Transferência de R$100 recebida! Saldo atual: R$${saldo}`;
+  }
+</script>

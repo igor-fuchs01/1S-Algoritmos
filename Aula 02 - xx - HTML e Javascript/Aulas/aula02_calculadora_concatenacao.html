@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora legal</title>
+</head>
+<body>
+    <input id="input_num1" type="text">
+    <input id="input_num2" type="text">
+    <button onclick="multiplicar()">Multiplicar</button>
+    <button onclick="dividir()">Dividir</button>
+    <button onclick="subtrair()">Subtrair</button>
+    <button onclick="somar()">Somar</button>
+
+    <button onclick="tabzao()">Alternar a caixa</button>
+    <button onclick="inserir1()">Inserir 1</button>
+</body>
+</html>
+<script>
+    function multiplicar(){
+        alert('O ' + input_num1.value + ' multiplicado por ' + input_num2.value + ' resulta em ' + (Number(input_num1.value) * Number(input_num2.value)));
+    }
+    function dividir(){
+        alert('O ' + input_num1.value + ' dividido por ' + input_num2.value + ' resulta em ' + (Number(input_num1.value) / Number(input_num2.value)));
+    }
+    function subtrair(){
+        alert('O ' + input_num1.value + ' subtraído por ' + input_num2.value + ' resulta em ' + (Number(input_num1.value) - Number(input_num2.value)));
+    }
+    function somar(){
+        alert('O ' + input_num1.value + ' somado por ' + input_num2.value + ' resulta em ' + (Number(input_num1.value) + Number(input_num2.value)));
+    }
+    
+    caixa_selecionada = 0;
+    caixa = [input_num1, input_num2];
+    function tabzao(){
+        if(caixa_selecionada == 1){
+            caixa_selecionada = 0
+        } else {
+            caixa_selecionada = 1
+        }
+    }
+    function inserir1(){
+        caixa[caixa_selecionada].value += 1;
+    }
+</script>

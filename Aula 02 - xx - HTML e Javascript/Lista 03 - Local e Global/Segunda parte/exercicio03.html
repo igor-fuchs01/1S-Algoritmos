@@ -1,0 +1,57 @@
+<!-- 3. Nota da Atividade Avaliativa
+Faça um programa para calcular o valor da nota da atividade avaliativa sendo:
+
+a) O nome do aluno
+
+b)  Pergunte o valor da Ativ. Avaliativa 1, Ativ. Avaliativa 2 e Ativ. Avaliativa 3
+
+c) Ao clicar no botão “Mostrar Nota” o programa deve emitir as seguintes mensagens:
+
+                A soma das suas três atividades é: 9999 
+
+                XXXX, a média das suas atividades é: 9999,9999 
+
+                (OBS. XXXX é o nome do aluno) -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 03</title>
+  </head>
+  <body>
+    <span>Insira o nome do aluno:</span>
+    <input type="text" id="input_nome" />
+    <br />
+
+    <span>Qual a nota da sua Ativ. Avaliativa 1</span>
+    <input type="number" id="input_atividade1" />
+    <br />
+
+    <span>Qual a nota da sua Ativ. Avaliativa 2</span>
+    <input type="number" id="input_atividade2" />
+    <br />
+
+    <span>Qual a nota da sua Ativ. Avaliativa 3</span>
+    <input type="number" id="input_atividade3" />
+    <br />
+
+    <button onclick="mostrarNota()">Mostrar Nota</button>
+    <div id="div_exibir1"></div>
+    <div id="div_exibir2"></div>
+  </body>
+</html>
+<script>
+  function mostrarNota() {
+    let name = input_nome.value;
+    let ativ1 = Number(input_atividade1.value);
+    let ativ2 = Number(input_atividade2.value);
+    let ativ3 = Number(input_atividade3.value);
+    let soma = ativ1 + ativ2 + ativ3;
+    let media = soma / 3;
+    
+    div_exibir1.innerHTML = ` A soma das suas três atividades é: ${soma}`;
+    div_exibir2.innerHTML = `${name}, a média das suas atividades é: ${media}`;
+  }
+</script>

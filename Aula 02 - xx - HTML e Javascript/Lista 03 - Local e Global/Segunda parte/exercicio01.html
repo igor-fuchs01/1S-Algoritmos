@@ -1,0 +1,59 @@
+<!-- 1.  Calculadora Básica
+
+Crie um programa que:  
+
+a) Solicite 2 números ao usuário  
+
+b) Tenha um botão para cada operação aritmética. Ao clicar em algum deles, exibir na página uma dessas frases:  
+
+   - A soma entre X e Y é Z  
+
+   - A diferença entre X e Y é Z  
+
+   - O produto entre X e Y é Z  
+
+   - A razão entre X e Y é Z          -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 01</title>
+  </head>
+  <body>
+    <input id="input_num1" type="number" />
+    <input id="input_num2" type="number" />
+    <button onclick="multiplicar()">Multiplicar</button>
+    <button onclick="dividir()">Dividir</button>
+    <button onclick="subtrair()">Subtrair</button>
+    <button onclick="somar()">Somar</button>
+    <div id="div_exibir"></div>
+  </body>
+</html>
+<script>
+  function multiplicar() {
+    let n1 = Number(input_num1.value);
+    let n2 = Number(input_num2.value);
+    let resultado = n1 * n2;
+    div_exibir.innerHTML = `O produto entre ${n1} e ${n2} é ${resultado}`;
+  }
+  function dividir() {
+    let n1 = Number(input_num1.value);
+    let n2 = Number(input_num2.value);
+    let resultado = n1 / n2;
+    div_exibir.innerHTML = `A razão entre ${n1} e ${n2} é ${resultado}`;
+  }
+  function subtrair() {
+    let n1 = Number(input_num1.value);
+    let n2 = Number(input_num2.value);
+    let resultado = n1 - n2;
+    div_exibir.innerHTML = `A diferença entre ${n1} e ${n2} é ${resultado}`;
+  }
+  function somar() {
+    let n1 = Number(input_num1.value);
+    let n2 = Number(input_num2.value);
+    let resultado = n1 + n2;
+    div_exibir.innerHTML = `A soma entre ${n1} e ${n2} é ${resultado}`;
+  }
+</script>

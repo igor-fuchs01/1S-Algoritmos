@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Divisor:
+    <input type="text" id="input_divisor"> <br>
+
+    Dividendo:
+    <input type="text" id="input_dividendo"> <br>
+
+    <button onclick="calcular()">Calcular Resto</button>
+    <button onclick="dividir()">Dividir</button>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        let divisor = Number(input_divisor.value);
+        let dividendo = Number(input_dividendo.value);
+
+        let resto = dividendo % divisor;
+        div_mensagem.innerHTML = `A divisão de ${divisor} por ${dividendo} é ${resto}`;
+    }
+
+    function dividir(){
+        let divisor = Number(input_divisor.value);
+        let dividendo = Number(input_dividendo.value);
+
+        let resultado = divisor / dividendo;
+        resultadoFormatado = resultado.toFixed(0);
+
+        div_mensagem.innerHTML = `A divisão de ${divisor} por ${dividendo} resulta em: ${resultado}`;
+    }
+</script>
