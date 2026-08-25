@@ -1,0 +1,51 @@
+<!--4.  Rola amigos pizza?
+
+Um grupo de amigos costuma se reunir na casa de um deles para comer pizza. Só que eles têm um trato de que o valor da pizza, quando dividido entre os amigos, não deve passar de 20,00 por amigo. Ajude-os criando um programa o qual: 
+
+amigos) Pergunte o valor da pizza 
+
+b) Pergunte amigos quantidade de amigos reunidos 
+
+c) Ao clicar em "Rola amigos pizza?", calcule e exiba o valor que cada amigo vai pagar na pizza com uma frase na página como esta "Cada amigo vai pagar R$X pela pizza" 
+
+d) Somente caso o valor por amigo passe de R$20,00, exiba também amigos frase "Deu ruim! Pizza muito cara!"
+
+
+
+5. Rola amigos pizza - parte-2
+
+Refaça amigos questão anterior de tal forma que amigos frase do item d) apareça na cor de letra vermelha com itálico e negrito.  -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 04</title>
+  </head>
+  <body>
+    <h1>Rola amigos pizza?</h1>
+    <span>Insira o valor da pizza:</span>
+    <input type="text" id="input_valor" /> <br />
+    <br />
+
+    <span>Insira quantidade de amigos reunidos:</span>
+    <input type="text" id="input_amigos" /> <br />
+    <br />
+
+    <button onclick="calcular()">Rola amigos pizza?</button>
+    <div id="div_exibir"></div>
+  </body>
+</html>
+<script>
+  function calcular() {
+    let valor = Number(input_valor.value);
+    let amigos = Number(input_amigos.value);
+    let calculo = valor / amigos;
+
+    div_exibir.innerHTML = `Cada amigo vai pagar R$${calculo} pela pizza <br>`;
+    if (valor / amigos > 20) {
+      div_exibir.innerHTML += `Deu ruim! Pizza muito cara!`;
+    }
+  }
+</script>
