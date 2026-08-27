@@ -1,0 +1,52 @@
+<!-- 19. Análise de economia 
+
+Crie um programa o qual: 
+
+a) Pergunte ao usuário qual sua meta de economia 
+
+b) Pergunte ao usuário quanto tem guardado 
+
+c) Ao clicar em "Analisar economia"... 
+
+d) Caso a meta tenha sido alcançada ou ultrapassada, exibir, abaixo do botão, a frase Parabéns, meta alcançada!. 
+Caso a meta tenha sido ultrapassada, exibir também a frase Meta ultrapassada em X (onde X é a diferença entre a economia e a meta) 
+
+e) Caso a meta ainda não tenha sido alcançada, exibir, abaixo do botão, a frase Força! Ainda em busca da meta! 
+Falta X (onde X é a diferença entre a meta e a economia)  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 19</title>
+</head>
+<body>
+    <h1>Análise de economia</h1>
+    <span>Insira qual a sua meta de economia:</span>
+    <input type="text" id="ipt_meta">
+    <br><br>
+    <span>Insira quanto você economizou:</span>
+    <input type="text" id="ipt_economia">
+    <br><br>
+    <button onclick="analisarEconomia()">Analisar economia...</button>
+    <br><br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function analisarEconomia(){
+        let meta = Number(ipt_meta.value);
+        let economia = Number(ipt_economia.value);
+
+        if(economia >= meta){
+            div_exibir.innerHTML = `Parabéns, meta alcançada!`;
+        }
+        if(economia > meta){
+            div_exibir.innerHTML += `<br> Meta ultrapassada em ${economia - meta}`;
+        }
+        if(economia < meta){
+            div_exibir.innerHTML = `Força! Ainda em busca da meta! Falta ${meta - economia}`;
+        }
+    }
+</script>

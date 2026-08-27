@@ -1,0 +1,45 @@
+<!-- 
+ 21. Análise de temperatura 
+
+Crie um programa o qual: 
+
+a) Solicita a temperatura do ambiente 
+
+b) Ao clicar em "Verificar clima", determine se o clima está: 
+
+    Apropriada p/ conservar alimento - Caso a temperatura for menor que 10 
+
+    Inapropriada p/ conservar alimento - Caso a temperatura for a partir de 10 
+
+c) Em caso de temperatura apropriada, exiba a figura de um alimento em bom estado. Caso contrário, exiba a imagem de um alimento estragado 
+
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 21</title>
+  </head>
+  <body>
+    <h1>Análise de temperatura</h1>
+    <span>Insira a temperatura do ambiente:</span>
+    <input type="text" id="ipt_temperatura" />
+    <br />
+    <br />
+    <button onclick="verificarClima()">Verificar Clima</button>
+    <br /><br />
+    <div id="div_exibir"></div>
+  </body>
+</html>
+<script>
+  function verificarClima() {
+    let temperatura = Number(ipt_temperatura.value);
+    if (temperatura < 10) {
+      div_exibir.innerHTML = `<img src="https://viverbem.unimed.coop.br/wp-content/uploads/2024/11/98b1368d-6943-4819-a41e-b55abd0aa896.png">`;
+    } else {
+      div_exibir.innerHTML = `<img src="https://st2.depositphotos.com/2489675/8702/i/450/depositphotos_87029080-stock-illustration-bad-apple-half.jpg">`;
+    }
+  }
+</script>

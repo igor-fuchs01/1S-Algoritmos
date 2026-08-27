@@ -1,0 +1,49 @@
+<!-- 
+ 16. Controle de peso no elevador - v2
+
+Crie um programa o qual: 
+
+a) Solicite a quantidade de homens e mulheres num elevador 
+
+b) Ao clicar num botão "Ligar elevador", calcule o peso total no elevador, considerando que um homem pesa em média 90kg e uma mulher 70kg 
+
+c) Caso o peso seja até 500, exiba uma frase na cor verde abaixo do botão com a frase Elevador vai se mover, pois está com Xkg 
+
+d) Caso o peso seja maior que 500, exiba uma frase na cor vermelha abaixo do botão com a frase Alguém precisa descer. Precisa perder Xkg para mover o elevador  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Controle de peso no elevador - v2</h1>
+    <span>Insira a quantidade de homens:</span>
+    <input type="text" id="ipt_qtd_homens">
+    <br><br>
+    <span>Insira a quantidade de mulheres:</span>
+    <input type="text" id="ipt_qtd_mulheres">
+    <br><br>
+    <button onclick="ligarElevador()">Ligar elevador</button>
+    <br><br>
+    <div id="div_exibir"></div>
+    
+</body>
+</html>
+<script>
+    function ligarElevador(){
+        let qtdHomens = Number(ipt_qtd_homens.value);
+        let qtdMulheres = Number(ipt_qtd_mulheres.value);
+
+        let peso = 90 * qtdHomens + 70 * qtdMulheres;
+
+        if(peso <= 500){
+            div_exibir.innerHTML = `<span style="color:green">Elevador vai se mover, pois está com ${peso}kg</span>`;
+        } else {
+            div_exibir.innerHTML = `<span style="color:red">Alguém precisa descer. Precisa perder ${peso - 500}kg para mover o elevador</span>`;
+        }
+
+    }
+</script>
