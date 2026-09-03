@@ -1,0 +1,55 @@
+<!-- 11. Controle da umidade do ar
+Crie um programa que enviará um alerta de acordo com a umidade do ambiente, buscando evitar problemas respiratórios devido à falta de umidade relativa do ar.
+
+a) Pergunte a umidade atual do ambiente.
+b) Ao clicar em "Verificar umidade": 
+
+    b1) Valide se o valor informado está entre 0 e 100% e exiba um alerta de erro caso esteja fora desse intervalo.
+
+    b2) Caso o valor informado esteja dentro do intervalo, exiba a mensagem adequada:
+
+"Estado de Emergencia" (abaixo de 12%)
+"Estado de alerta" (entre 12% e 20%)
+"Estado de atenção" (acima de 20% até 30%)
+"Nenhum risco" (acima de 30%) 
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 11</title>
+  </head>
+  <body>
+    <h1>Controle da umidade do ar</h1>
+    <span>Insira a umidade atual do ambiente(%):</span>
+    <input type="text" id="ipt_umidade" />
+    <button onclick="verificarUmidade()">Verificar Umidade</button>
+    <br />
+    <br />
+    <div id="div_exibir"></div>
+  </body>
+</html>
+<script>
+  function verificarUmidade() {
+    let umidade = Number(ipt_umidade.value);
+
+    if (umidade < 0) {
+      alert(
+        "Insira o valor de umidade entre 0% e 100%! O valor inserido está abaixo do permitido!",
+      );
+    } else if (umidade > 100) {
+      alert(
+        "Insira o valor de umidade entre 0% e 100%! O valor inserido está acima do permitido!",
+      );
+    } else if (umidade < 12) {
+      div_exibir.innerHTML = `Estado de Emergencia`;
+    } else if (umidade <= 20) {
+      div_exibir.innerHTML = `Estado de Alerta`;
+    } else if (umidade <= 30) {
+      div_exibir.innerHTML = `Estado de atenção`;
+    } else {
+      div_exibir.innerHTML = `Nenhum risco`;
+    }
+  }
+</script>

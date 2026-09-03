@@ -1,0 +1,60 @@
+<!-- 7. Consumo de Calorias: Sua Dieta Está Saudável?
+Uma nutricionista precisa ajudar seus usuários em com suas dietas. Ajude-a criando um programa o qual: 
+
+a) Pergunte quantos pães franceses o usuário tem comido por dia; 
+
+b) Pergunte quantos pacotes de bolacha recheada o usuário tem comido por dia; 
+
+c) Pergunte quantos copos de achocolatado o usuário tem tomado por dia; 
+
+d) Ao clicar em "Verificar calorias", calcule quantas calorias o usuário tem consumido com base nas 3 informações. Considere que um pão francês tem 50 calorias, um pacote de bolacha, 80 e um copo de achocolatado, 70. 
+
+e) Após fazer o cálculo, exiba uma dessas frases, abaixo do botão: 
+
+   "Parabéns, vai ficar em forma!", caso as calorias sejam menores do que 200. 
+
+   "Cuidado, vai ficar menos saudável !" caso as calorias sejam entre 200 e 400. 
+
+   "Alerta crítico de saúde !!!", caso as calorias sejam mais de 400.  
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 07</title>
+</head>
+<body>
+    <h1>Consumo de Calorias: Sua Dieta Está Saudável?</h1>
+    <span>Insira os pães que o usuário tem comido:</span>
+    <input type="text" id="ipt_paes_comidos">
+    <br> <br>
+    <span>Insira quantos pacotes de bolacha recheada o usuário tem comido por dia:</span>
+    <input type="text" id="ipt_pcts_bolacha">
+    <br> <br>
+    <span>Insira quantos copos de achocolatado o usuário tem comido por dia:</span>
+    <input type="text" id="ipt_cps_achocolatado">
+    <br> <br>
+    <button onclick="verificarCalorias()">Verificar calorias</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function verificarCalorias(){
+        let paes = Number(ipt_paes_comidos.value);
+        let bolacha = Number(ipt_pcts_bolacha.value);
+        let achocolatado = Number(ipt_cps_achocolatado.value);
+
+        let calorias = paes * 50 + bolacha * 80 + achocolatado * 70;
+
+        if(calorias < 200){
+            div_exibir.innerHTML = `Parabéns, vai ficar em forma!`;
+        } else if (calorias < 400) {
+            div_exibir.innerHTML = `Cuidado, vai ficar menos saudável !`;
+        } else {
+            div_exibir.innerHTML = `Alerta crítico de saúde !!!`;
+        }
+    }
+</script>

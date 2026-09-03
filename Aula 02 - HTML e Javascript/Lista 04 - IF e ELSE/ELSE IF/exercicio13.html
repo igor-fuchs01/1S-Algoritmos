@@ -1,0 +1,45 @@
+<!--13. Imagem do Pokémon selecionado 
+Crie um programa que ajude o usuário a escolher um Pokémon inicial e exiba a imagem correspondente.
+
+a) Pergunte ao usuário qual Pokémon inicial ele escolheria entre Bulbasaur, Charmander ou Squirtle.
+b) Ao clicar no botão "Escolher Pokémon", exiba a imagem do Pokémon escolhido abaixo do botão:
+
+Bulbasaur → Exibir imagem do Bulbasaur
+Charmander → Exibir imagem do Charmander
+Squirtle → Exibir imagem do Squirtle
+Se o usuário inserir um nome inválido, exibir uma mensagem "Pokémon não reconhecido." 
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 13</title>
+  </head>
+  <body>
+    <span>Escolha entre Bulbasaur, Charmander ou Squirtle:</span>
+    <input type="text" id="ipt_pokemon" />
+    <br />
+    <br />
+    <button onclick="escolherPokemon()">Escolher Pokémon</button>
+    <br />
+    <br />
+    <div id="div_exibir"></div>
+  </body>
+</html>
+<script>
+  function escolherPokemon() {
+    let pokemon = ipt_pokemon.value;
+
+    if (pokemon == "Bulbasaur") {
+      div_exibir.innerHTML = `<img src="https://img.pokemondb.net/artwork/large/bulbasaur.jpg">`;
+    } else if (pokemon == "Charmander") {
+      div_exibir.innerHTML = `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIlT86ONj8Y9iGguGykfyBspRnuOyzqh26PZIe9v_bNcTiSU_CnweJ2TLhPafwQRdY-jzVqsYHpLOZo9-YGtEfA-2jAkHnEFIQl1u9EEhjXA&s=10">`;
+    } else if (pokemon == "Squirtle") {
+      div_exibir.innerHTML = `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt-DsFWCNWjFxHupFdj4NOacM4cGmWEvyyk0C4kgF9Vj7vbg2UyqLucy5JvJeBAkdZSn30_3kraHJTQSvsitIePNMmHDs9wHWnkp8Kdnsf-Q&s=10">`;
+    } else {
+      div_exibir.innerHTML = `Pokémon não reconhecido.`;
+    }
+  }
+</script>
