@@ -1,0 +1,44 @@
+<!-- Nome: Igor Fuchs Pereira | RA: 01262075 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação de Corridas de Táxi</title>
+</head>
+<body>
+    <h1>Simulação de Corridas de Táxi</h1>
+    <span>Insira a distância que será percorrida(KM):</span>
+    <input type="text" id="ipt_distancia">
+    <br> <br>
+    <span>Insira a velocidade do carro(KM/h):</span>
+    <input type="text" id="ipt_velocidade">
+    <br> <br>
+    <button onclick="simular()">Simular</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    let combustivelRestante = 25;
+    function simular(){
+        let distancia = Number(ipt_distancia.value);
+        let velocidade = Number(ipt_velocidade.value);
+
+        let tempoCorrida = distancia / velocidade;
+        
+        let combustivelGasto = distancia / 10; // 10 km = 1L
+        let combustivelGastoPorcentagem = 100 * combustivelGasto / 25;
+        
+        let combustivelRestantePorcentagem = 100 * combustivelRestante / 25 - combustivelGastoPorcentagem;
+        combustivelRestante = combustivelRestante - combustivelGasto;
+        
+        div_exibir.innerHTML += `Ao percorrer ${distancia} km, em velocidade média de ${velocidade} km/h, a viagem durou ${tempoCorrida.toFixed(2)} horas. Ao todo, foram gastos ${combustivelGasto.toFixed(2)} litros de combustível (${combustivelGastoPorcentagem.toFixed(2)}%). Restam ${combustivelRestante.toFixed(2)} litros de combustível (${combustivelRestantePorcentagem.toFixed(2)}%).`;
+        
+        if(combustivelRestantePorcentagem >= 30){
+            div_exibir.innerHTML += `<br>Continue a rodar! <br> <br>`;
+        } else {
+            div_exibir.innerHTML += `<br>É melhor parar para reabastecer! <br> <br>`;
+        }
+    }
+</script>
