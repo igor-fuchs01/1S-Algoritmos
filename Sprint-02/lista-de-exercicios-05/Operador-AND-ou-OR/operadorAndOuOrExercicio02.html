@@ -1,0 +1,61 @@
+<!--
+2. Simulador de Preferências de Compras: Será que Robervaldo Gostaria?
+Imagine que Robervaldo está buscando um novo celular. Ele tem algumas preferências específicas para a escolha de modelo.
+
+Robervaldo prefere celulares com tela grande (acima de 6.5 polegadas) e que sejam da cor preta ou prata.
+
+Com base nessas informações, crie um simulador no qual:
+
+a) Solicite o tamanho da tela do celular encontrado.
+
+b) Solicite a cor do celular encontrado, dentre as opções:
+
+Preto
+Prata
+Azul
+Vermelho
+c) Ao clicar em "Será que ele gosta?", mostre, abaixo:
+
+A imagem de uma pessoa feliz, caso as características do celular coincidam com as preferências de Robervaldo.
+Ou a imagem de uma pessoa decepcionada, caso contrário.  
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercíco 02</title>
+  </head>
+  <body>
+    <h1>Simulador de Preferências de Compras: Será que Robervaldo Gostaria?</h1>
+    <span>Insira o tamanho da tela do celular (Polegadas):</span>
+    <input type="text" id="ipt_tela_celular" />
+    <br />
+    <br />
+    <span>Selecione a cor do celular: </span>
+    <select name="" id="select_cor">
+      <option>Preto</option>
+      <option>Prata</option>
+      <option>Azul</option>
+      <option>Vermelho</option>
+    </select>
+    <br />
+    <br />
+    <button onclick="checarGosto()">Será que ele gosta?</button>
+    <br />
+    <br />
+    <div id="div_exibir"></div>
+  </body>
+</html>
+<script>
+  function checarGosto() {
+    let tamanhoCelular = Number(ipt_tela_celular.value);
+    let cor = select_cor.value;
+
+    if (tamanhoCelular > 6.5 && (cor == "Preto" || cor == "Prata")) {
+      div_exibir.innerHTML = `<img src="https://media.istockphoto.com/id/2183025497/pt/vetorial/smiley-emote-smiling-face-icon-cute-smile-sign-happy-emotion-symbol-emoticon-symbol-sign.jpg?s=612x612&w=0&k=20&c=T1_IIurxIz4nWEhX_RQ8n9qHi_gTExjdqYteDUSeidM=" alt="">`;
+    } else {
+      div_exibir.innerHTML = `<img src="https://images.pexels.com/photos/33816367/pexels-photo-33816367/free-photo-of-foto-da-natureza.jpeg?cs=tinysrgb&dpr=1&w=500" alt="">`;
+    }
+  }
+</script>

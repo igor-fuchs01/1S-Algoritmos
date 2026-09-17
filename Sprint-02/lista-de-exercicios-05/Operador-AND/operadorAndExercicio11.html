@@ -1,0 +1,76 @@
+<!-- 
+Agostinho é um taxista do Rio de Janeiro que deseja automatizar sua frota de táxis (Carrara Drivers). 
+Faça um programa em HTML/JS que: 
+
+a) Tenha um campo para nome do passageiro   
+
+b) Tenha um campo para a distância (em km) do local atual para o destino do passageiro 
+
+c) Tenha um campo - que só aceita número - que recebe a informação da bandeira da corrida (o valor deve ser apenas 1, 2 ou 3) 
+
+    c1) Este campo só pode aceitar números e valores entre 1 e 3 
+
+d) Tenha um campo que recebe o horário da corrida (sistema de 24 horas e somente horas inteiras) 
+
+    d1) Este campo só pode aceitar números e valores entre 0 e 23 
+
+e) Ao clicar em "Calcular corrida", informe ao passageiro o valor final da corrida, com uma frase assim: 
+
+    "Olá NOME Sua corrida, será na bandeira X, percorrerá Y km e o total da corrida será de Z" 
+
+    e1) Siga a tabela abaixo para calcular o adicional por bandeira e horário: 
+
+Obs: O valor nominal da corrida é de R$ 1,25 por km   
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 11</title>
+</head>
+<body>
+    <h1>Carrara Drivers</h1>
+    <span>Insira o nome do passageiro:</span>
+    <input type="text" id="ipt_passageiro">
+    <br> <br>
+    <span>Insira a distância da viagem (em KM):</span>
+    <input type="text" id="ipt_distancia">
+    <br> <br>
+    <span>Insira a bandeira da corrida(1, 2 ou 3):</span>
+    <select id="select_bandeira">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </select>
+    <br> <br>
+    <span>Insira o horário da corrida (24 horas):</span>
+    <input type="time" id="ipt_horario">
+    <br> <br>
+    <button onclick="calcularCorrida()">Calcular corrida</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function calcularCorrida(){
+        let passageiro = Number(ipt_passageiro.value);
+        let distancia = Number(ipt_distancia.value);
+        let bandeira = Number(ipt_bandeira.value);
+        let horario = Number(ipt_horario.value);
+
+        if(bandeira == 1 || bandeira == 2 || bandeira == 3){
+            alert("Insira um valor bandeira válido!");
+            return;
+        }
+
+        if(horario >= 0 && horario < 24){
+            alert("Insira um horário válido!");
+            return;
+        }
+
+        if(hor)
+
+        div_exibir.innerHTML = ``;
+    }
+</script>

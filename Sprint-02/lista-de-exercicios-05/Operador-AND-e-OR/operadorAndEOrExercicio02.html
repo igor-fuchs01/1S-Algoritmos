@@ -1,0 +1,56 @@
+<!--  
+Um banco aprova um empréstimo se o cliente tiver renda mensal de pelo menos R$ 3000 E score de crédito de pelo menos 600, OU se o cliente já for correntista há mais de 5 anos E não tiver nenhuma dívida em aberto.
+
+Crie um programa o qual:
+
+a) Solicite a renda mensal do cliente
+
+b) Solicite o score de crédito do cliente
+
+c) Solicite há quantos anos o cliente é correntista
+
+d) Pergunte, com um select ("Sim"/"Não"), se o cliente possui dívidas em aberto
+
+e) Ao clicar em "Analisar crédito", exiba um alert com "Empréstimo aprovado" ou "Empréstimo negado", conforme as regras acima
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 02</title>
+</head>
+<body>
+    <h1>Aprovação de Crédito Bancário</h1>
+    <span>Insira a renda mensal do cliente:</span>
+    <input type="text" id="ipt_renda_mensal">
+    <br> <br>
+    <span>Insira o score do crédito:</span>
+    <input type="text" id="ipt_score">
+    <br> <br>
+    <span>Insira há quantos anos o cliente é correntista:</span>
+    <input type="text" id="ipt_anos_correntista">
+    <br> <br>
+    <span>Selecione se você possuí dívidas ou não:</span>
+    <select id="select_tem_dividas">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br> <br>
+    <button onclick="analisarCredito()">Analisar Crédito</button>
+</body>
+</html>
+<script>
+    function analisarCredito(){
+        let rendaMensal = Number(ipt_renda_mensal.value);
+        let score = Number(ipt_score.value);
+        let anosCorrentista = Number(ipt_anos_correntista.value);
+        let opcaoDivida = select_tem_dividas.value;
+
+        if(rendaMensal >= 3000 && (score >= 600 || anosCorrentista > 5) && opcaoDivida == 'Sim'){
+            alert("Empréstimo aprovado");
+        } else {
+            alert("Empréstimo negado");
+        }
+    }
+</script>

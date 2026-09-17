@@ -1,0 +1,48 @@
+<!--  
+1. Processo Seletivo: Vestibular ou ENEM?
+Uma faculdade aprova o candidato se ele tirou pelo menos 700 pontos no vestibular interno, OU se tirou pelo menos 650 no ENEM E também fez a redação (nota da redação maior que 0).
+
+Crie um programa o qual:
+
+a) Solicite a nota do vestibular interno do candidato
+
+b) Solicite a nota do ENEM do candidato
+
+c) Solicite a nota da redação do candidato
+
+d) Ao clicar em "Verificar aprovação", exiba um alert com "Aprovado!", caso o candidato atenda a alguma das regras acima, ou "Não aprovado", caso contrário
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 01</title>
+</head>
+<body>
+    <h1>Processo Seletivo: Vestibular ou ENEM?</h1>
+    <span>Insira a do nota vestibular:</span>
+    <input type="text" id="ipt_nota_vestibular">
+    <br> <br>
+    <span>Insira a nota do ENEM:</span>
+    <input type="text" id="ipt_nota_enem">
+    <br> <br>
+    <span>Insira a nota da redação do candidato:</span>
+    <input type="text" id="ipt_nota_redacao">
+    <br> <br>
+    <button onclick="verificarAprovacao()">Verificar aprovação</button>
+</body>
+</html>
+<script>
+    function verificarAprovacao(){
+        let notaVestibular = Number(ipt_nota_vestibular.value);
+        let notaEnem = Number(ipt_nota_enem.value);
+        let notaRedacao = Number(ipt_nota_redacao.value);
+
+        if((notaVestibular >= 700 || notaEnem >= 650) && notaRedacao > 0){
+            alert('Aprovado!');
+        } else {
+            alert('Não aprovado');
+        }
+    }
+</script>

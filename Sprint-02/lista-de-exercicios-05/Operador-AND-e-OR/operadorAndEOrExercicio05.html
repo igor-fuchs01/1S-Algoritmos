@@ -1,0 +1,52 @@
+<!-- 5. Check-in de Voo
+Uma companhia aérea só permite o embarque se o passageiro tiver documento válido E (tiver feito check-in online OU tiver chegado ao aeroporto com pelo menos 2 horas de antecedência do voo).
+
+Crie um programa o qual:
+
+a) Pergunte, com um select ("Sim"/"Não"), se o documento do passageiro está válido
+
+b) Pergunte, com um select ("Sim"/"Não"), se o passageiro fez check-in online
+
+c) Solicite quantas horas de antecedência o passageiro chegou ao aeroporto
+
+d) Ao clicar em "Verificar embarque", exiba um alert com "Embarque liberado" ou "Embarque negado", conforme a regra acima 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 05</title>
+</head>
+<body>
+    <h1>Check-in de Voo</h1>
+    <span>O documento do passageiro está válido:</span>
+    <select id="ipt_documento">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br> <br>
+    <span>O passageiro fez check-in:</span>
+    <select id="ipt_checkin">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br> <br>
+    <span>Insira quantas horas de antecedência o passageiro chegou ao aeroporto:</span>
+    <input type="text" id="ipt_horas_antecedencia">
+    <br> <br>
+    <button onclick="verificarEmbarque()">Verificar Embarque</button>
+</body>
+</html>
+<script>
+    function verificarEmbarque(){
+        let documento = ipt_documento.value;
+        let checkin = ipt_checkin.value;
+        let horasAntecedencia = Number(ipt_horas_antecedencia.value);
+        if(documento == 'Sim' && (checkin == 'Sim' || horasAntecedencia >= 2)){
+            alert('Embarque liberado')
+        } else {
+            alert('Embarque negado')
+        }
+    }
+</script>

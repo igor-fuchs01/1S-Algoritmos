@@ -1,0 +1,53 @@
+<!-- 9. Acesso à Academia 24 Horas
+Uma academia libera o acesso à catraca se o aluno tiver o plano Premium, OU se o aluno tiver o plano Básico E estiver tentando entrar em um horário permitido (entre 6h e 22h), desde que, em qualquer um dos casos, o check-in biométrico tenha sido validado.
+
+Crie um programa o qual:
+
+a) Pergunte o plano do aluno, com um select ("Premium" ou "Básico")
+
+b) Solicite a hora atual (0 a 23)
+
+c) Pergunte, com um select ("Sim"/"Não"), se o check-in biométrico foi validado
+
+d) Ao clicar em "Liberar catraca", exiba um alert com "Acesso liberado" ou "Acesso negado", conforme as regras acima
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 09</title>
+</head>
+<body>
+    <h1>Acesso à Academia 24 Horas</h1>
+    <label for="select_plano">Selecione o plano do aluno:</label>
+    <select id="select_plano">
+        <option>Premium</option>
+        <option>Básico</option>
+    </select>
+    <br> <br>
+    <label for="ipt_hora">Insira a hora atual(0 a 23)</label>
+    <input type="text" id="ipt_hora">
+    <br> <br>
+    <label for="select_checkin">Selecione se o check-in biométrico foi validado:</label>
+    <select id="select_checkin">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br><br>
+    <button onclick="liberarCatraca()">Liberar catraca</button>
+</body>
+</html>
+<script>
+    function liberarCatraca(){
+        let plano = select_plano.value;
+        let hora = Number(ipt_hora.value);
+        let checkin = select_checkin.value;
+
+        if((plano == 'Premium' || plano == 'Básico' && hora >= 6 && hora <= 22) && checkin == 'Sim'){
+            alert('Acesso liberado');
+        } else {
+            alert('Acesso negado');
+        }
+    }
+</script>

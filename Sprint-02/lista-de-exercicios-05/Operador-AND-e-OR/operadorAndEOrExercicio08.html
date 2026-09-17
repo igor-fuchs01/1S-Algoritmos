@@ -1,0 +1,53 @@
+<!-- 8. Elegibilidade para Vacinação Prioritária
+Um posto de saúde libera a vacinação prioritária para pessoas com idade de pelo menos 60 anos OU que possuam alguma condição de risco (comorbidade), desde que, em qualquer um dos casos, a pessoa esteja com o cadastro no sistema de saúde em dia.
+
+Crie um programa o qual:
+
+a) Solicite a idade da pessoa
+
+b) Pergunte, com um select ("Sim"/"Não"), se a pessoa possui alguma comorbidade
+
+c) Pergunte, com um select ("Sim"/"Não"), se o cadastro da pessoa no sistema de saúde está em dia
+
+d) Ao clicar em "Verificar prioridade", exiba um alert com "Vacinação prioritária liberada" ou "Vacinação prioritária não liberada", conforme as regras acima 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 08</title>
+</head>
+<body>
+    <h1>Elegibilidade para Vacinação Prioritária</h1>
+    <label for="ipt_idade">Insira a idade da pessoa:</label>
+    <input type="text" id="ipt_idade">
+    <br> <br>
+    <label for="select_comorbidade">Selecione se a pessoa possui alguma comorbidade:</label>
+    <select id="select_comorbidade">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br> <br>
+    <label for="select_cadastro">Selecione se o cadastro da pessoa no sistema de saúde está em dia:</label>
+    <select id="select_cadastro">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br> <br>
+    <button onclick="verificarPrioridade()">Verificar prioridade</button>
+</body>
+</html>
+<script>
+    function verificarPrioridade(){
+        let idade = Number(ipt_idade.value);
+        let comorbidade = select_comorbidade.value;
+        let cadastro = select_cadastro.value;
+
+        if((idade >= 60 || comorbidade == 'Sim') && cadastro == 'Sim'){
+            alert('Vacinação prioritária liberada')
+        } else {
+            alert('Vacinação prioritária não liberada');
+        }
+    }
+</script>

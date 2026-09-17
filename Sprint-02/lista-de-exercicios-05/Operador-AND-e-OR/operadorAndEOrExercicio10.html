@@ -1,0 +1,62 @@
+<!-- 
+10. Matrícula em Curso Avançado
+Uma escola permite a matrícula de um aluno em um curso avançado se ele já tiver concluído o curso básico com média de pelo menos 7, OU se tiver sido aprovado no teste de nivelamento com nota de pelo menos 8, desde que, em ambos os casos, a documentação do aluno esteja completa.
+
+Crie um programa o qual:
+
+a) Pergunte, com um select ("Sim"/"Não"), se o aluno concluiu o curso básico
+
+b) Solicite a média do aluno no curso básico
+
+c) Solicite a nota do aluno no teste de nivelamento
+
+d) Pergunte, com um select ("Sim"/"Não"), se a documentação do aluno está completa
+
+e) Ao clicar em "Verificar matrícula", exiba um alert com "Matrícula liberada para o curso avançado" ou "Matrícula não liberada", conforme as regras acima
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10</title>
+</head>
+<body>
+    <h1>Matrícula em Curso Avançado</h1>
+    <label for="select_curso">Selecione se você concluiu o curso básico:</label>
+    <select id="select_curso">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br><br>
+    <label for="ipt_media">Insira a sua nota média do curso básico:</label>
+    <input type="text" id="ipt_media">
+    <br><br>
+    <label for="ipt_nivelamento">Insira a sua nota no teste de nivelamento:</label>
+    <input type="text" id="ipt_nivelamento">
+    <br><br>
+    <label for="select_documentacao">Selecione se você está com a documentação completa:</label>
+    <select id="select_documentacao">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br><br>
+    <button onclick="verificarMatricula()">Verificar matrícula</button>
+</body>
+</html>
+<script>
+    function verificarMatricula(){
+        let cursoBasico = select_curso.value;
+        let media = Number(ipt_media.value);
+        let nivelamento = Number(ipt_nivelamento.value);
+        let documentacao = select_documentacao.value;
+
+        if((cursoBasico == 'Sim' && media >= 7 || nivelamento >= 8) && documentacao == 'Sim'){
+            alert('Matrícula liberada para o curso avançado');
+        } else {
+            alert('Matrícula não liberada')
+        }
+    }
+</script>

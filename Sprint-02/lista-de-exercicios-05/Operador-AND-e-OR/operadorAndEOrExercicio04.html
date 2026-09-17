@@ -1,0 +1,54 @@
+<!-- 
+4. Acesso à Área VIP do Evento
+Um evento libera a entrada na área VIP para pessoas com pelo menos 18 anos E (que tenham ingresso VIP OU que possuam um convite especial).
+
+Crie um programa o qual:
+
+a) Solicite a idade da pessoa
+
+b) Pergunte, com um select ("Sim"/"Não"), se a pessoa tem ingresso VIP
+
+c) Pergunte, com um select ("Sim"/"Não"), se a pessoa tem convite especial
+
+d) Ao clicar em "Liberar acesso", exiba um alert com "Acesso liberado à área VIP" ou "Acesso negado", conforme a regra acima
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 04</title>
+</head>
+<body>
+    <h1>Acesso à Área VIP do Evento</h1>
+    <span>Insira a idade da pessoa:</span>
+    <input type="text" id="ipt_idade_pessoa">
+    <br> <br>
+    <span>Selecione se a pessoa tem ingresso VIP:</span>
+    <select id="select_ingresso_vip">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br> <br>
+    <span>Selecione se a pessoa tem convite especial:</span>
+    <select id="select_convite_especial">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br> <br>
+    <button onclick="liberarAcesso()">Liberar acesso</button>
+</body>
+</html>
+<script>
+    function liberarAcesso(){
+        let idade = Number(ipt_idade_pessoa.value);
+        let ingresso = select_ingresso_vip.value;
+        let convite = select_convite_especial.value;
+
+        if(idade >= 18 && (ingresso == 'Sim' || convite == 'Sim')){
+            alert('Acesso liberado à área VIP');
+        } else {
+            alert('Acesso negado');
+        }
+    }
+</script>
