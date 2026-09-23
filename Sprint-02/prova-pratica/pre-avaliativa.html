@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Avaliativa - ANIL OSAG</title>
+</head>
+<body>
+    <h1>Posto Família - ANIL OSAG</h1>
+    <span>Selecione o cobustível vendido</span>
+    <select id="select_combustivel">
+        <option>Gasolina</option>
+        <option>Etanol</option>
+        <option>Diesel</option>
+    </select>
+    <br><br>
+    <span>Insira a quantidade vendida (L):</span>
+    <input type="text" id="ipt_qtd_vendida">
+    <br><br>
+    <span>Insira a hora da venda (00 a 23 – somente a hora, sem os minutos):</span>
+    <input type="text" id="ipt_hora_venda">
+    <br> <br>
+    <button onclick="realizarVenda()">Realizar Venda</button>
+    <button onclick="encerrarDia()">Encerrar o dia</button>
+    <br> <br>
+    <h1>Relatório de Vendas</h1>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    let numeroVenda = 0;
+    let valoresAcumulados = 0;
+    let descontosAcumulados = 0;
+    let litrosGasolina = 0;
+    let litrosEtanol = 0;
+    let litrosDiesel = 0;
+
+    function realizarVenda(){
+        let tipoCombustivel = select_combustivel.value;
+        let qtdVendida = Number(ipt_qtd_vendida.value);
+        let horaVenda = Number(ipt_hora_venda.value);
+
+        let valorTipoCombustivel;
+        let desconto = 0;
+        let valorCombustivel;
+
+        // armazena o valor bruto junto com o desconto
+        if(tipoCombustivel == 'Gasolina'){
+            valorTipoCombustivel = 6.49;
+            desconto = 5.05 / 100;
+            litrosGasolina += qtdVendida;
+            
+        } else if (tipoCombustivel == 'Etanol'){
+            valorTipoCombustivel = 4.44;
+            desconto = 4.8 / 100;
+            litrosEtanol += qtdVendida;
+
+        } else { // diesel
+            valorTipoCombustivel = 4.39;
+            desconto = 3.03 / 100;
+            litrosDiesel += qtdVendida;
+        }
+
+        // valor do combustivel vendido
+        valorCombustivel = valorTipoCombustivel * qtdVendida;
+
+        // Calcula o desconto, se tem desconto ou não
+        if(qtdVendida >= 20 && ((horaVenda >= 21 && horaVenda <= 23) || (horaVenda >= 0 && horaVenda <= 6))){
+            desconto = valorCombustivel * desconto
+            valorCombustivel = valorCombustivel - desconto;
+            descontosAcumulados += desconto;
+        }
+
+        numeroVenda++;
+        valoresAcumulados += valorCombustivel;
+
+        div_exibir.innerHTML += `<b>Venda ${numeroVenda}ª – Valor Recebido = R$ ${valorCombustivel.toFixed(2)} – Desconto Concedido = R$ ${desconto.toFixed(2)} – Acumulado dos Recebimentos= R$ ${valoresAcumulados.toFixed(2)} - Acumulado dos Descontos = R$ ${descontosAcumulados.toFixed(2)}</b> <br> <br>`;
+    }
+
+    function encerrarDia(){
+        // gasolina 
+        let porcentagemGasolina = litrosGasolina * 100 / (litrosGasolina + litrosEtanol + litrosDiesel);
+        let porcentagemEtanol = litrosEtanol * 100 / (litrosGasolina + litrosEtanol + litrosDiesel);
+        let porcentagemDiesel = litrosDiesel * 100 / (litrosGasolina + litrosEtanol + litrosDiesel);
+
+        div_exibir.innerHTML = `
+            <b><u>Resumo do Faturamento</u></b>
+            <br>
+            Valor Total Recebido = R$ ${valoresAcumulados.toFixed(2)}
+            <br>
+            Valor Total dos Descontos = R$ ${descontosAcumulados.toFixed(2)}
+            <br>
+            <br>
+            Quantidade de Gasolina Vendida = ${litrosGasolina.toFixed(2)} litros == ${porcentagemGasolina.toFixed(2)} %
+            <br>
+            Quantidade de Etanol Vendida = ${litrosEtanol.toFixed(2)} litros == ${porcentagemEtanol.toFixed(2)} %
+            <br>
+            Quantidade de Diesel Vendida = ${litrosDiesel.toFixed(2)} litros == ${porcentagemDiesel.toFixed(2)} %
+        `;
+
+        numeroVenda = 0;
+        valoresAcumulados = 0;
+        descontosAcumulados = 0;
+        litrosGasolina = 0;
+        litrosEtanol = 0;
+        litrosDiesel = 0;
+    }
+</script>
