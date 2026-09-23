@@ -1,0 +1,52 @@
+<!-- 
+7. Senha Forte ou Fraca
+
+Crie um programa que:  
+
+a) Solicite uma senha ao usuário.  
+
+b) Enquanto o usuário digita, exiba a força da senha, com base nos critérios de segurança abaixo:
+
+A senha deve conter ao menos 8 caracteres.
+A senha deve conter 1 letra maiúscula.
+A senha deve conter 1 letra minúscula.
+c) A força da senha é baseada em quantos critérios de segurança foram utilizados, com os níveis: 
+
+"Forte" - atingiu todos os critérios de segurança
+"Média" - atingiu 2 critérios de segurança
+"Fraca" - atingiu 1 critério de segurança
+"Insegura" - não atingiu nenhum critério de segurança
+OBS: utilize .toUpperCase() e .toLowerCase() para validar manipular a String e comparar se possui as letras maiúsculas e minúsculas.
+Como você poderia usar esses métodos para comparar se possui uma letra maiúscula ou minúscula? - Depende da sua lógica!
+
+OBS2: caso a senha seja um conjunto de apenas números ou caracteres especiais, não deve passar nas validações de "1 letra maiúscula" e "1 letra minúscula".
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 07</title>
+</head>
+<body>
+    <h1>Senha Forte ou Fraca</h1>
+    <span>Insira uma senha:</span>
+    <input type="text" id="ipt_senha" oninput="checarSenha()">
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function checarSenha(){
+        let senha = ipt_senha.value;
+        let criterio = 0;
+
+        if(senha.length >= 8){
+            criterio++;
+        }
+        if(senha.toUpperCase() != senha){
+
+        }
+        div_exibir.innerHTML `<span>${valor}</span>`
+    }
+</script>

@@ -1,0 +1,48 @@
+<!--  
+6. Observador de Índices
+
+Crie um programa o qual: 
+
+a) Solicite uma frase qualquer ao usuário 
+
+b) Solicite o número de qual letra o usuário deseja ver (por exemplo, 3ª letra, 5ª letra)
+
+c) Enquanto ele digita, abaixo deve aparecer uma frase como esta: 
+
+    A primeira letra é: AA
+
+    A XXª letra é: BB
+
+    A última letra é: CC
+
+Onde XX é a posição informada pelo usuário, AA é a primeira letra da frase, BB é a letra da frase que está na posição informada e CC a letra final da frase.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 06</title>
+</head>
+<body>
+    <h1>Observador de Índices</h1>
+    <span>Insira uma frase:</span>
+    <input type="text" id="ipt_frase" oninput="identificarIndice()">
+    <br> <br>
+    <span>Insira o número da letra você deseja ver (por exemplo, 3ª letra, 5ª letra):</span>
+    <input type="text" id="ipt_num_letra" oninput="identificarIndice()">
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function identificarIndice(){
+        let frase = ipt_frase.value;
+        let numLetra = Number(ipt_num_letra.value);
+
+        div_exibir.innerHTML = `    
+        A primeira letra é: ${frase[0]} <br>
+        A ${numLetra}ª letra é: ${frase[numLetra -1]} <br>
+        A última letra é: ${frase.at(-1)}`;
+    }
+</script>

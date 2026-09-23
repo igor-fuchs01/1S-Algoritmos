@@ -1,0 +1,59 @@
+<!-- 3. Primeira e Última letra
+
+Crie um programa que:  
+
+a) Solicite uma frase ao usuário.  
+
+b) Solicite uma palavra ao usuário.  
+
+c) Ao clicar num botão "Analisar Frase": 
+
+   c1) Caso a frase comece e termine com a palavra informada, exiba: "A frase começa e termina com ZZZ!", sendo ZZZ a palavra informada.
+
+   c2) Caso a frase apenas comece com a palavra informada, exiba: "A frase começa com ZZZ!", sendo ZZZ a palavra informada.
+
+   c3) Caso a frase apenas termine com a palavra informada, exiba: "A frase termina com ZZZ!", sendo ZZZ a palavra informada.
+
+   c4) Caso a frase não comece nem termine com a palavra informada, exiba: "A frase não começa e nem termina com ZZZ!", sendo ZZZ a palavra informada..
+
+OBS: utilize .startsWith() e .endsWith() para validar se o texto começa ou termina com algum valor específico
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 03</title>
+</head>
+<body>
+    <h1> Primeira e Última letra</h1>
+    <span>Insira uma frase:</span>
+    <input type="text" id="ipt_frase">
+    <br> <br>
+    <span>Insira uma palavra:</span>
+    <input type="text" id="ipt_palavra">
+    <br> <br>
+    <button onclick="analisarFrase()">Analisar Frase</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function analisarFrase(){
+        let frase = ipt_frase.value;
+        let palavra = ipt_palavra.value;
+
+        div_exibir.innerHTML = '';
+
+        if(frase.startsWith(palavra) && frase.endsWith(palavra)){
+            div_exibir.innerHTML = `A frase começa e termina com ${palavra}!`;
+        } else if(frase.startsWith(palavra)){
+            div_exibir.innerHTML = `A frase começa com ${palavra}!`;
+        } else if(frase.endsWith(palavra)){
+            div_exibir.innerHTML = `A frase termina com ${palavra}!`;
+        } else {
+            div_exibir.innerHTML = `A frase não começa e nem termina com ${ZZZ}!`;
+        }
+    }
+</script>
