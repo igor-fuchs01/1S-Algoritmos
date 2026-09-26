@@ -31,22 +31,45 @@ OBS2: caso a senha seja um conjunto de apenas números ou caracteres especiais, 
 </head>
 <body>
     <h1>Senha Forte ou Fraca</h1>
-    <span>Insira uma senha:</span>
-    <input type="text" id="ipt_senha" oninput="checarSenha()">
-    <div id="div_exibir"></div>
+    <span>Insira sua senha:</span>
+    <input type="password" id="ipt_senha" oninput="checarSenha()">
+    <br> <br>
+    <span>
+        - A senha deve conter ao menos 8 caracteres. <br>
+        - A senha deve conter 1 letra maiúscula. <br>
+        - A senha deve conter 1 letra minúscula.
+    </span>
+    <br> <br>
+    <span>A sua senha está: </span>
+    <b id="bold_exibir">Insegura</b>
 </body>
 </html>
 <script>
     function checarSenha(){
         let senha = ipt_senha.value;
         let criterio = 0;
+        let seguranca;
 
         if(senha.length >= 8){
             criterio++;
         }
         if(senha.toUpperCase() != senha){
+            criterio++;
+        }
+        if(senha.toLowerCase() != senha){
+            criterio++;
+        }
+
+        if(criterio == 3) {
+            seguranca = 'Forte';
+        } else if(criterio == 2){
+            seguranca = 'Média';
+        } else if(criterio == 1){
+            seguranca = 'Fraca';
+        } else {
+            seguranca = 'Insegura';
 
         }
-        div_exibir.innerHTML `<span>${valor}</span>`
+        bold_exibir.innerHTML = `<b>${seguranca}</b>`
     }
 </script>
