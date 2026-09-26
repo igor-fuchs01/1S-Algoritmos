@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 02</title>
+</head>
+<body>
+    <h1>Diário de Viagens: Do Primeiro ao Último Destino</h1>
+    <span>Qual o destino da viagem: </span>
+    <input type="text" id="ipt_destino">
+    <button onclick="adicionar()">Adicionar</button>
+    <br> <br>
+    <button onclick="primeiraViagem()">Primeira viagem</button>
+    <button onclick="TerceiraViagem()">Terceira viagem</button>
+    <button onclick="ultimaViagem()">Última viagem</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    let listaViagens = [];
+    function adicionar(){
+        let destino = ipt_destino.value;
+
+        listaViagens.push(destino);
+    }
+    function primeiraViagem(){
+        let destino = ipt_destino.value;
+
+        if(listaViagens.length > 0){
+            div_exibir.innerHTML = `O primeiro local viajado foi: ${listaViagens[0]}`;
+        } else {
+            div_exibir.innerHTML = `Ainda não viajou`;
+        }
+
+    }
+    function TerceiraViagem(){
+        let destino = ipt_destino.value;
+
+        if(listaViagens.length > 2){
+            div_exibir.innerHTML = `O primeiro local viajado foi: ${listaViagens[2]}`;
+        } else {
+            div_exibir.innerHTML = `Ainda não fez a terceira viagem`;
+        }
+    }
+    function ultimaViagem(){
+        let destino = ipt_destino.value;
+
+        if(listaViagens.length > 0){
+            div_exibir.innerHTML = `O último local viajado foi: ${listaViagens[listaViagens.length - 1]}`
+        } else {
+            div_exibir.innerHTML = `Ainda não viajou`;
+        }
+    }
+</script>
