@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 17</title>
+</head>
+<body>
+    <span>Insira uma quantidade de elefantes: </span>
+    <input type="text" id="ipt_elefantes">
+    <br> <br>
+    <button onclick="atazanar()">Atazanar a médium</button>
+    <br> <br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function atazanar(){
+        let elefantes = Number(ipt_elefantes.value);
+        let contador = 2;
+        let mensagem = '';
+        let incomodar = 'incomodam, ';
+
+        if(elefantes == 1){
+            mensagem = `<b>1</b> elefante <b>incomoda</b> muita gente! <BR>`;
+        }
+
+        while(contador <= elefantes){
+            incomodar += 'incomodam, '
+
+            mensagem += `
+                <b>1</b> elefante <b>incomoda</b> muita gente! <BR>
+                <b>${contador}</b> elefantes, <b>${incomodar}</b>muito mais! <BR> <BR>
+            `
+
+            contador++;
+        }   
+
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>

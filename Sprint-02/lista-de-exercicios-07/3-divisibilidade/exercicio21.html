@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem dos Múltiplos</title>
+</head>
+<body>
+    <span>Insira um número positivo de que é o limite da contagem: </span>
+    <input type="text" id="ipt_num1">
+    <br> <br>
+    <span>Insira um número para testes de divisibilidade, que precisa estar entre 1 e o número acima:</span>
+    <input type="text" id="ipt_num2">
+    <br> <br>
+    <button onclick="somarNumeros()">Somar Números</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function somarNumeros(){
+        let num1 = Number(ipt_num1.value);
+        let num2 = Number(ipt_num2.value);
+        let contador = 0;
+        let mensagem = ``;
+        let soma = 0;
+
+        if(num2 < 1 || num2 > num1){
+            alert("O segundo número deve estar entre 1 e o número informado na primeira entrada.");
+        } else {
+            while (contador <= num1) {
+                if (contador % num2 === 0) {
+                    mensagem += `${contador}<br>`;
+                    soma += contador;
+                }
+                contador++;
+            }      
+        }
+
+        mensagem += `Soma dos Múltiplos: ${soma}`;
+        div_exibir.innerHTML = mensagem;
+    }
+</script>

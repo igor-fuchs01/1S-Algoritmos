@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coelho e Tartaruga</title>
+</head>
+<body>
+    <h1>Coelho e Tartaruga</h1>
+    <span>Insira o tamanho da pista:</span>
+    <input type="text" id="ipt_tamanho_pista">
+    <br> <br>
+    <span>Quantos metros a tartaruga anda por rodada:</span>
+    <input type="text" id="ipt_metros_tartaruga">
+    <br> <br>
+    <span>Quantos metros o coelho anda por rodada:</span>
+    <input type="text" id="ipt_metros_coelho">
+    <br> <br>
+    <span>A cada quantas rodadas o coelho dorme: </span>
+    <input type="text" id="ipt_qtd_rodadas_coelho">
+    <br> <br>
+    <button onclick="darLargada()">Dar a Largada</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function darLargada(){
+        let tamanhoPista = Number(ipt_tamanho_pista.value);
+        let velocidadeTartaruga = Number(ipt_metros_tartaruga.value);
+        let velocidadeCoelho = Number(ipt_metros_coelho.value);
+        let sonecasCoelho = Number(ipt_qtd_rodadas_coelho.value);
+
+        let distanciaTartaruga = 0;
+        let distanciaCoelho = 0;
+        let sonecasTiradas = 0;
+
+        let mensagem = ''
+        let rodada = 1;
+
+        if(tamanhoPista <= 0 || velocidadeTartaruga <= 0 || velocidadeCoelho <= 0 || sonecasCoelho <= 0){
+            alert("Você está inserindo dados menores ou iguais a zero! Só é permitido maiores que zero!");
+        } else if(velocidadeTartaruga >= velocidadeCoelho){
+            alert("A tartaruga deve ser a mais lenta");
+        } else if(sonecasCoelho < 2){
+            alert("O intervalo da soneca precisa ser igual ou maior a 2, senão o coelho dormiria em todas as rodadas.")
+        } else {
+            mensagem = `(pista: ${tamanhoPista} m | tartaruga: ${velocidadeTartaruga} m | coelho: ${velocidadeCoelho} m | soneca a cada ${sonecasCoelho} rodadas) <br><br>`
+
+            while(distanciaTartaruga < tamanhoPista && distanciaCoelho < tamanhoPista){
+
+                //distancia tartaruga
+                distanciaTartaruga += velocidadeTartaruga;
+                mensagem += `"Rodada ${rodada}: Tartarugo ${distanciaTartaruga} m | `
+
+                // distancia coelho
+                if(rodada % sonecasCoelho == 0){
+                    mensagem += `Coelhildo ${distanciaCoelho} m - Coelho dormindo (zzz...)" <br>`
+                    sonecasTiradas++;
+                } else {
+                    distanciaCoelho += velocidadeCoelho;
+                    mensagem += `Coelhildo ${distanciaCoelho} m" <br>`
+                }
+                rodada++;
+            }
+
+            // declaração de resultado
+            rodada--; // correção devido ao final do looping
+            mensagem += `<br> <br>Resultado: <br>`;
+            
+            if(distanciaTartaruga >= tamanhoPista && distanciaCoelho >= tamanhoPista){ // empate
+                mensagem += `"Empate na rodada ${rodada}!" <br>`;
+
+            } else if(distanciaTartaruga >= tamanhoPista){ // tartaruga ganhou
+                let porcentagemCompletou = distanciaCoelho * 100 / tamanhoPista;
+                let porcentagemSonecas = sonecasTiradas * 100 / rodada;
+
+                mensagem += `
+                    "Tartarugo Devagarinho venceu na rodada ${rodada}!" <br>
+                    "Coelhildo Soneca completou ${porcentagemCompletou.toFixed(2)}% da pista." <br>
+                    "O coelho tirou ${sonecasTiradas} sonecas, o que representa ${porcentagemSonecas.toFixed(2)}% das rodadas." <br>
+                `;
+            } else { // coelho ganhou
+                let porcentagemCompletou = distanciaTartaruga * 100 / tamanhoPista;
+                let porcentagemSonecas = sonecasTiradas * 100 / rodada;
+
+                mensagem += `
+                    "Coelhildo Soneca venceu na rodada ${rodada}!" <br>
+                    "Tartarugo Devagarinho completou ${porcentagemCompletou.toFixed(2)}% da pista." <br>
+                    "O coelho tirou ${sonecasTiradas} sonecas, o que representa ${porcentagemSonecas.toFixed(2)}% das rodadas." <br>
+                `;
+            }
+        }
+
+        div_exibir.innerHTML = mensagem;
+    }
+
+</script>

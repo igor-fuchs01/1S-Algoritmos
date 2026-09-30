@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 15</title>
+</head>
+<body>
+    <span>Informe o intervalo crescente de números:</span>
+    <input type="text" id="ipt_intervalo1">
+    <span> até </span>
+    <input type="text" id="ipt_intervalo2">
+    <br> <br>
+    <button onclick="checarTriPenta()">Curto 3 e 5!</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function checarTriPenta(){
+        let intervalo1 = Number(ipt_intervalo1.value);
+        let intervalo2 = Number(ipt_intervalo2.value);
+        let mensagem = '';
+
+        while(intervalo1 <= intervalo2){
+            let flag = false;
+            let tri = intervalo1 % 3 == 0;
+            let penta = intervalo1 % 5 == 0;
+
+            if(tri && penta){
+                mensagem += `É TRI!É PENTA! <BR>`;
+            } else if(tri){
+                mensagem += `É TRI! <BR>`;
+            } else if(penta){
+                mensagem += `É PENTA! <BR>`;
+            } else {
+                mensagem += `${intervalo1} <BR>`
+            }
+
+            intervalo1++;
+        }
+
+        div_exibir.innerHTML = mensagem;
+    }
+</script>
