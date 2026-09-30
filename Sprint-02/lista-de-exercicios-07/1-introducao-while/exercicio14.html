@@ -1,0 +1,61 @@
+<!-- 14. Divisibilidade  
+Crie um programa o qual:
+
+a) Solicite um intervalo crescente de valores numéricos
+
+b) Solicite um número para teste de divisibilidade, ele tem que estar entre 3 e 13   
+
+c) Ao clicar num botão "Divisível"...   
+
+c) Exiba, debaixo do botão, todos os números contidos no intervalo do item a que NÃO são divisíveis pelo número do item b.
+
+OBS: ao informar '1 a 10' no intervalo e informar '3' no divisor, deve exibir todos os números, exceto os múltiplos de 3 (como 3, 6 e 9). 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 14</title>
+</head>
+<body>
+    <span>Insira um intervalo crescente de valores númericos:</span>
+    <input type="text" id="ipt_intervalo1">
+    <span> até </span>
+    <input type="text" id="ipt_intervalo2">
+    <br> <br>
+    <span>Insira o número para teste de divisibilidade (entre 3 e 13): </span>
+    <select id="select_divisibilidade">
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+    </select>
+    <br> <br>
+    <button onclick="divisivel()">Divisível</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function divisivel(){
+        let intervalo1 = Number(ipt_intervalo1.value);
+        let intervalo2 = Number(ipt_intervalo2.value);
+        let divisibilidade = Number(select_divisibilidade.value);
+
+        while(intervalo1 < intervalo2){
+            if(intervalo1 % divisibilidade != 0){
+                div_exibir.innerHTML += `${intervalo1} <br>`;
+            }
+            intervalo1++;
+        } 
+
+    }
+</script>

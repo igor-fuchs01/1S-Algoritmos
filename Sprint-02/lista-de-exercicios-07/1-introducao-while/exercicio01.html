@@ -1,0 +1,32 @@
+<!-- 1. Introdução a While
+1. Contagem Simples
+Crie um programa o qual:
+ 
+a) Ao clicar num botão "Contar"...   
+
+b) Exiba, debaixo do botão, os números de 1 a 15, um embaixo do outro.
+
+OBS: não esqueça das quebras de linha a cada exibição!   -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 01</title>
+</head>
+<body>
+    <h1>Contagem Simples</h1>
+    <button onclick="contar()">Contar</button>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    let contador = 1;
+    function contar(){
+        
+        while(contador <= 15){
+            div_exibir.innerHTML += `${contador++} <br>`;
+        }
+    }
+</script>

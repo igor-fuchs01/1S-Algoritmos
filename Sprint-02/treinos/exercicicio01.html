@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posto Família Osag</title>
+</head>
+<body>
+    <h1>Controle de Faturamento</h1>
+    <span>Selecione o tipo de combustível</span>
+    <select name="" id="select_combustivel">
+        <option>Gasolina</option>
+        <option>Etanol</option>
+        <option>Diesel</option>
+    </select>
+    <br> <br>
+    <span>Insira a quanitdade vendida (L): </span>
+    <input type="text" id="ipt_qtd_vendida">
+    <br> <br>
+    <span>Insira a hora da venda (0 a 23): </span>
+    <input type="text" id="ipt_hora_venda">
+    <br> <br>
+    <button onclick="registrarVenda()">Registrar Venda</button>
+    <button onclick="encerrarDia()">Encerrar o dia</button>
+    <br> <br>
+    <b id="bold_exibir"></b>
+</body>
+</html>
+<script>
+    let numVenda = 0;
+    let acumuloRecebimentos = 0;
+    let acumuloDescontos = 0;
+    let qtdGasolina = 0;
+    let qtdEtanol = 0;
+    let qtdDiesel = 0;
+
+    function registrarVenda(){
+        // entradas
+        let tipoCombustivel = select_combustivel.value;
+        let qtdVendida = Number(ipt_qtd_vendida.value);
+        let horaVenda = Number(ipt_hora_venda.value);
+        // auxiliares
+        let valorRecebido = 0;
+        let descontoConcedido = 0;
+        let descontoDoTipo = 0;
+
+        if(bold_exibir.innerHTML.includes("Resumo do Faturamento")){
+            bold_exibir.innerHTML = ``;
+        }
+
+        if(tipoCombustivel == 'Gasolina'){
+            valorRecebido = 6.49 * qtdVendida;
+            descontoDoTipo = 5.05 / 100;
+            qtdGasolina += qtdVendida;
+        } else if(tipoCombustivel == 'Etanol'){
+            valorRecebido = 4.44 * qtdVendida;
+            descontoDoTipo = 4.8 / 100;
+            qtdEtanol += qtdVendida;
+        } else { // diesel   
+            valorRecebido = 4.39 * qtdVendida;
+            descontoDoTipo = 3.03 / 100;
+            qtdDiesel += qtdVendida;
+        }
+
+        if(qtdVendida >= 20 && (horaVenda >= 21 && horaVenda < 24) || (horaVenda >= 0 && horaVenda <= 6)){
+            descontoConcedido = descontoDoTipo * valorRecebido;
+            valorRecebido = valorRecebido - descontoConcedido;
+        } 
+
+        // operacoes globais
+        numVenda++;
+        acumuloRecebimentos += valorRecebido;
+        acumuloDescontos += descontoConcedido;
+
+        bold_exibir.innerHTML += `Venda ${numVenda}ª – Valor Recebido = R$ ${valorRecebido.toFixed(2)} – Desconto Concedido = R$ ${descontoConcedido.toFixed(2)} – Acumulado dos Recebimentos= R$ ${acumuloRecebimentos.toFixed(2)} - Acumulado dos Descontos = R$ ${acumuloDescontos.toFixed(2)} <br>`
+    }
+
+    function encerrarDia(){
+        // porcentagemGasolina = qtdGasolina | 100 = qtdGasolina + qtdEtanol + qtdDiesel
+        let porcentagemGasolina = (qtdGasolina * 100) / (qtdGasolina + qtdEtanol + qtdDiesel); 
+        let porcentagemDiesel = (qtdDiesel * 100) / (qtdGasolina + qtdEtanol + qtdDiesel); 
+        let porcentagemEtanol = (qtdEtanol * 100) / (qtdGasolina + qtdEtanol + qtdDiesel); 
+
+        bold_exibir.innerHTML = `
+        <i><u>Resumo do Faturamento</u></i>
+        <br> <br>
+        Valor Total Recebido = R$ ${acumuloRecebimentos.toFixed(2)}
+        <br>
+        Valor Total dos Descontos = R$ ${acumuloDescontos.toFixed(2)}
+        <br>
+        <br>
+        Quantidade de Gasolina Vendida = ${qtdGasolina.toFixed(2)} litros == ${porcentagemGasolina.toFixed(1)} %
+        <br>
+        Quantidade de Etanol Vendida = ${qtdEtanol.toFixed(2)} litros == ${porcentagemEtanol.toFixed(1)} %
+        <br>
+        Quantidade de Diesel Vendida = ${qtdDiesel.toFixed(2)} litros == ${porcentagemDiesel.toFixed(1)} %`;
+
+        numVenda = 0;
+        acumuloRecebimentos = 0;
+        acumuloDescontos = 0;
+        qtdGasolina = 0;
+        qtdEtanol = 0;
+        qtdDiesel = 0;
+    }
+</script>
