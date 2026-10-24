@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrida</title>
+</head>
+<body>
+    Distância inicial semanal do aluno (em km): <input type="text" id="ipt_distancia"> <br>
+    O percentual de aumento semanal desejado (de 1 a 10): <input type="text" id="ipt_aumento"> <br>
+    A meta de distância semanal (em km): <input type="text" id="ipt_meta"> <br>
+    O número máximo de semanas do plano: <input type="text" id="ipt_semana_maxima"> <br>
+    <br>
+    <button onclick="gerarPlanilha()">Gerar Planilha</button>
+    <br> <br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function gerarPlanilha(){
+        let distancia = Number(ipt_distancia.value);
+        let aumento = Number(ipt_aumento.value);
+        let meta = Number(ipt_meta.value);
+        let semanaMaxima = Number(ipt_semana_maxima.value);
+
+        let semanaAtual = 1;
+        let distanciaAtual = 0;
+        let distanciaExibida = 0;
+        let distanciaPercorrida = 0;
+
+        if(distancia <= 0){
+            alert('A distância inicial deve ser maior que 0!')
+        } else if(aumento < 1 || aumento > 10) {
+            alert('O percentual de aumento deve ser entre 1 e 10!')
+        } else if(meta <= distancia){
+            alert('A meta deve ser maior que a distância inicial!')
+        } else if(semanaMaxima < 1 || semanaMaxima > 24){
+            alert('O número de semanas deve ser entre 1 e 24!')
+        } else {
+
+            div_mensagem.innerHTML = `(distância inicial: ${distancia} km | aumento: ${aumento}% | meta: ${meta} km | máximo: ${semanaMaxima} semanas) <br>`;
+
+            while(distanciaAtual < meta && semanaAtual <= semanaMaxima){
+
+                if(semanaAtual == 1){
+                    distanciaAtual = distancia;
+                    distanciaExibida = distanciaAtual;
+
+                } else if(semanaAtual % 4 == 0){
+                    distanciaExibida = distanciaAtual * 0.7;
+                
+                } else {
+                    distanciaAtual += distanciaAtual * aumento / 100;
+                    distanciaExibida = distanciaAtual;
+                }
+
+                distanciaPercorrida += distanciaExibida;
+
+                div_mensagem.innerHTML += `Semana ${semanaAtual} - ${distanciaExibida.toFixed(2)} km (${(distanciaExibida * 100 / meta).toFixed(2)}% da meta) <br>`;
+
+                semanaAtual++;
+            }
+
+            if(distanciaAtual >= meta){
+                div_mensagem.innerHTML += `Meta de ${meta} km atingida na semana ${semanaAtual - 1}! Total acumulado no plano: ${distanciaPercorrida.toFixed(2)} km.`;
+            } else {
+                div_mensagem.innerHTML += `Meta não atingida em ${semanaAtual - 1} semanas. A última semana chegou a ${(distanciaExibida * 100 / meta).toFixed(2)}% da meta. Total acumulado no plano: ${distanciaPercorrida.toFixed(2)} km.`;
+            }
+        }
+    }
+</script>

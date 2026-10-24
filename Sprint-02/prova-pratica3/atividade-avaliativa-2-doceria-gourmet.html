@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doceria Gourmet</title>
+</head>
+<body>
+    <h1>Extrato Doceria - Dori Valdossin</h1>
+    <span>Insira a quantidade de Macarons: </span>
+    <input type="text" id="ipt_qtd_macarons">
+    <span>Insira o valor de venda: </span>
+    <input type="text" id="ipt_valor_macarons">
+    <br> <br>
+    <span>Insira a quantidade de Brigadeiros Gourmets: </span>
+    <input type="text" id="ipt_qtd_brigadeiros">
+    <span>Insira o valor de venda: </span>
+    <input type="text" id="ipt_valor_brigadeiros">
+    <br> <br>
+    <span>Insira a quantidade de Cupcakes: </span>
+    <input type="text" id="ipt_qtd_cupcakes">
+    <span>Insira o valor de venda: </span>
+    <input type="text" id="ipt_valor_cupcakes">
+    <br> <br>
+    <span>Insira a quantidade de Cheesecakes: </span>
+    <input type="text" id="ipt_qtd_cheesecakes">
+    <span>Insira o valor de venda: </span>
+    <input type="text" id="ipt_valor_cheesecakes">
+    <br> <br>
+    <button onclick="verificarVendas()">Verificar Vendas</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    
+    function verificarVendas(){
+
+        let qtdMacarons = Number(ipt_qtd_macarons.value);
+        let valorMacarons = Number(ipt_valor_macarons.value);
+
+        let qtdBrigadeiros = Number(ipt_qtd_brigadeiros.value);
+        let valorBrigadeiros = Number(ipt_valor_brigadeiros.value);
+
+        let qtdCupcakes = Number(ipt_qtd_cupcakes.value);
+        let valorCupcakes = Number(ipt_valor_cupcakes.value);
+
+        let qtdCheesecakes = Number(ipt_qtd_cheesecakes.value);
+        let valorCheesecakes = Number(ipt_valor_cheesecakes.value);
+
+        let msg = '';
+        let contador = 1;
+        let numeroVenda = 1;
+        let totalVendas = qtdMacarons + qtdBrigadeiros + qtdCupcakes + qtdCheesecakes;
+        let valorTotal = qtdMacarons * valorMacarons + qtdCheesecakes * valorCheesecakes + qtdCupcakes * valorCupcakes + qtdBrigadeiros * valorBrigadeiros;
+
+
+        if(qtdMacarons < 0 || valorMacarons < 0 || qtdBrigadeiros < 0 || valorBrigadeiros < 0 || qtdCupcakes < 0 || valorCupcakes < 0 || qtdCheesecakes < 0 || valorCheesecakes < 0){
+            alert("Você inseriu valores negativos em algum campo! Por favor, insira apenas valores que sejam iguais ou maiores a zero!")
+        } else {
+            msg += `Total de Vendas ${totalVendas} <br> <br>`;
+
+            // macaron
+            while(contador <= qtdMacarons){
+                msg += `Venda ${numeroVenda} - <img src="https://guiadacozinha.com.br/wp-content/uploads/2021/08/macaron-768x619.jpg" alt="IMG MACARON LINK" height="100px"> - ${valorMacarons} <br>`;
+                numeroVenda++;
+                contador++;
+            }
+            contador = 1;
+
+            // Brigadeiros
+            while(contador <= qtdBrigadeiros){
+                msg += `Venda ${numeroVenda} - <img src="https://www.receitasnestle.com.br/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/585f4b6718cb3fad169e44b00868e5e5.jpg?itok=fmi31RTw" alt="IMG BRIGADEIRO LINK" height="100px"> - ${valorBrigadeiros} <br>`;
+                numeroVenda++;
+                contador++;
+            }
+            contador = 1;
+
+            // cupcakes
+            while(contador <= qtdCupcakes){
+                msg += `Venda ${numeroVenda} - <img src="https://media.istockphoto.com/id/177047298/pt/foto/cupcakes-colorido.jpg?s=612x612&w=0&k=20&c=GFkCOyCyWxQNB5lgZttp0H3UzmSslcTP1qabaveYJu0=" alt="IMG CUPCAKES LINK" height="100px"> - ${valorCupcakes} <br>`;
+                numeroVenda++;
+                contador++;
+            }
+            contador = 1;
+
+            // cheesecakes
+            while(contador <= qtdCheesecakes){
+                msg += `Venda ${numeroVenda} - <img src="https://img.magnific.com/psd-gratuitas/deliciosa-fatia-de-bolo-de-queijo-de-bagas_191095-86302.jpg?semt=ais_hybrid&w=740&q=80" alt="IMG CHEESECAKE LINK" height="100px"> - ${valorCheesecakes} <br>`;
+                numeroVenda++;
+                contador++;
+            }
+
+            msg += `
+                <br>
+                Com a quantidade de ${qtdMacarons} Macarons (${(qtdMacarons * 100 / totalVendas).toFixed(1)}% do total), 
+                ${qtdBrigadeiros} Brigadeiros (${(qtdBrigadeiros * 100 / totalVendas).toFixed(1)}% do total), 
+                ${qtdCupcakes} Cupcakes (${(qtdCupcakes * 100 / totalVendas).toFixed(1)}% do total) e 
+                ${qtdCheesecakes} Cheesecakes (${(qtdCheesecakes * 100 / totalVendas).toFixed(1)}% do total), a venda totalizará R$${valorTotal.toFixed(2)}
+            `;
+
+            div_exibir.innerHTML = msg;
+        }
+    }
+</script>

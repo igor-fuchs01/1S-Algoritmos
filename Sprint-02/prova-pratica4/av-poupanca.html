@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poupança</title>
+</head>
+<body>
+    <h1>Poupança</h1>
+    <span>Informe quantos depósitos você fez no banco:</span>  
+    <input type="text" id="ipt_qtd"> <br>
+    <span>Informe o valor de cada depósito:</span> 
+    <input type="text" id="ipt_valor"> <br>
+    <span>Informe a cada quantos meses o bônus é aplicado:</span> 
+    <input type="text" id="ipt_bonus"> <br>
+    <br>
+    <button onclick="acompanhar()">Acompanhar grana</button>
+    <br>
+    <div id="div_mensagem"></div>
+    <br> <br>
+</body>
+</html>
+<script>
+    function acompanhar(){
+        let qtd = Number(ipt_qtd.value);
+        let valor = Number(ipt_valor.value);
+        let bonus = Number(ipt_bonus.value);
+
+        let contador = 1;
+        let valorTotal = 0;
+
+        div_mensagem.innerHTML = ``;
+        
+
+        while(contador <= qtd){
+            valorTotal += valor;
+
+            if(contador % bonus == 0){
+                valorTotal += valorTotal / 100;
+                div_mensagem.innerHTML += ` ${contador}º Mês: R$ ${valorTotal.toFixed(2)} ⭐ <br>`;
+
+            } else {
+                div_mensagem.innerHTML += ` ${contador}º Mês: R$ ${valorTotal.toFixed(2)} <br>`;
+            }
+            
+            contador++;
+        }
+
+        div_mensagem.innerHTML += `Total guardado: R$${valorTotal.toFixed(2)}`;
+
+        
+    }
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 02</title>
+</head>
+<body>
+    <span>Insira quantas pessoas vão entrar no carro:</span>
+    <input type="text" id="ipt_qtd_pessoas">
+    <br> <br>
+    <span>Indique a capacidade de passageiros que o veículo suporta:</span>
+    <input type="text" id="ipt_qtd_suportada">
+    <button onclick="partiuCarona()">#Partiu Carona</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body> 
+</html>
+<script>
+    function partiuCarona(){
+        let msg = '';
+        let qtdPessoas = Number(ipt_qtd_pessoas.value);
+        let qtdSuportada = Number(ipt_qtd_suportada.value);
+
+        if(qtdPessoas > 0 && qtdSuportada > 0){
+            msg += `Entrou o 1º passageiro (que é o(a) motorista) <br>`;
+
+            for(let i = 2; i <= qtdPessoas && i <= qtdSuportada; i++){
+                msg += `Entrou o ${i}º passageiro <br>`;
+            }
+            for(let i = qtdSuportada + 1; i <= qtdPessoas; i++){
+                msg += `O ${i}º passageiro terá que esperar! <br>`;
+            }
+        }
+
+        div_exibir.innerHTML = msg;
+    }
+</script>

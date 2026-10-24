@@ -1,0 +1,45 @@
+<!-- 
+3. Exibição de Pares no Intervalo  
+Crie um programa o qual:
+a) Pergunte um número de 1 a 10 (deve validar).
+b) Pergunte um segundo número de 30 a 100 (deve validar).
+c) Exiba todos os números pares dentro do intervalo de a) e b).
+OBS: para verificar se um número é par, utilize o resto da divisão por 2. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 03</title>
+</head>
+<body>
+    <span>Insira um número de 1 a 10:</span>
+    <input type="text" id="ipt_intervalo_a">
+    <br> <br>
+    <span>Insira um número de 30 a 100:</span>
+    <input type="text" id="ipt_intervalo_b">
+    <br> <br>
+    <button onclick="exibirPares()">Exibir Pares no Intervalo</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function exibirPares(){
+        let intervaloA = Number(ipt_intervalo_a.value);
+        let intervaloB = Number(ipt_intervalo_b.value);
+
+        if(!(intervaloA <= 10 && intervaloA >= 1)){
+            alert('O intervalo A não foi respeitado! Deve ser entre 1 a 10!');
+        } else if(!(intervaloB <= 100 && intervaloB >= 30)) {
+            alert('O intervalo B não foi respeitado! Deve ser entre 30 a 100!');
+        } else {
+            for(let i = intervaloA; i <= intervaloB; i++){
+                if(i % 2 == 0){
+                    div_exibir.innerHTML += `O número ${i} é par! <br>`;
+                }
+            }
+        }
+    }
+</script>

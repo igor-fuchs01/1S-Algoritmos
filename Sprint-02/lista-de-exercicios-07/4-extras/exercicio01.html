@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 01</title>
+</head>
+<body>
+    <span>Insira o dividendo: </span>
+    <input type="text" id="ipt_dividendo">
+    <br> <br>
+    <span>Insira o divisor: </span>
+    <input type="text" id="ipt_divisor">
+    <br> <br>
+    <button onclick="dividirSubtraindo()">Dividir Subtraindo</button>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function dividirSubtraindo(){
+        let dividendo = Number(ipt_dividendo.value);
+        let divisor = Number(ipt_divisor.value);
+        let dividendoAuxiliar = dividendo;
+        let resultado = 0;
+
+        while(dividendoAuxiliar >= divisor){
+            dividendoAuxiliar -= divisor;
+            resultado++;
+        }
+
+        div_exibir.innerHTML = `O resto é: ${(dividendoAuxiliar + dividendo) - dividendo} e o resultado da divisão é ${contador}`
+    }
+</script>
