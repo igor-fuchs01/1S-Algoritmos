@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Invasão de Impel Down</title>
+</head>
+<body>
+    <h1>Invasão de Impel Down</h1>
+    Insira a quantidade de batalhas: <input type="text" id="ipt_batalhas">
+    <br>
+    Insira a quantidade de marinheiros em cada batalha: <input type="text" id="ipt_marinheiros">
+    <br>
+    Insira a quantidade de carnes disponíveis: <input type="text" id="ipt_carnes">
+    <br>
+    <br>
+    <button onclick="batalhar()">Batalhar</button>
+    <br> 
+    <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    function batalhar(){
+        let energia = 100;
+        let batalhas = Number(ipt_batalhas.value);
+        let marinheiros = Number(ipt_marinheiros.value);
+        let carnes = Number(ipt_carnes.value);
+        let marinheirosDerrotados = 0;        
+        let flagDerrota = false;
+
+        for(let i = 1; i <= batalhas; i++){
+
+            if(energia < 10 && carnes == 0){
+                flagDerrota = true;
+                // alert('Derrotado');
+                i = marinheiros + 1;
+            } else {
+                // batalhas
+                if(energia < 10){
+                    carnes--;
+                    energia += 100;
+                }
+
+                energia -= 10;
+
+                for(let j = 1; j <= marinheiros; j++){
+                    if(energia < 5 && carnes == 0){
+                        flagDerrota = true;
+                        // alert('Derrotado');
+                        i = batalhas + 1;
+                        j = marinheiros + 1;
+                    } else {
+                        // marinheiros
+                        if(energia < 5){
+                            carnes--;
+                            energia += 100;
+                        }
+
+                        energia -= 5;
+                        marinheirosDerrotados++;
+                    }
+                    
+                }
+            }
+        }
+
+
+        // resultado
+        if(flagDerrota){
+            div_exibir.innerHTML = `Resultado: Luffy foi derrotado! Sobraram ${marinheiros * batalhas - marinheirosDerrotados} marinheiros. <br>`;
+        } else {
+            div_exibir.innerHTML = `Resultado: Luffy saiu vitorioso! <br>`;
+        }
+        
+        div_exibir.innerHTML += `
+            Quantidade de carnes restantes: ${carnes} <br>
+            Quantidade de marinheiros derrotados: ${marinheirosDerrotados} <br>
+            Energia restante ao final das batalhas: ${energia} <br>
+        `;
+    }
+</script>
