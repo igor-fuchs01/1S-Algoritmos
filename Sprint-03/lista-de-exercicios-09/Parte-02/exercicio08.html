@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 08</title>
+</head>
+<body>
+    <h1>Cadastro de Filhos sem Repetição e Estimativa de Custo Escolar</h1>
+    <span>Insira o nome do seu filho: </span>
+    <input type="text" id="ipt_filho">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar Família</button>
+    <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    let listaFilhos = [];
+
+    function cadastrar(){
+        let filho = ipt_filho.value;
+
+        if(listaFilhos.includes(filho)){
+            alert('Não pode mais de 1 filho com o mesmo nome!');
+        } else {
+            listaFilhos.push(filho);
+        }
+    }
+
+    function atualizar(){
+        div_exibir.innerHTML = `
+        Você tem ${listaFilhos.length} filhos <br>
+        Seu custo mensal será aproximadamente R$${listaFilhos.length * 3000} se colocá-los em escola particular ou R$${listaFilhos.length * 1500} se eles estudarem em escola pública`;
+    }
+</script>

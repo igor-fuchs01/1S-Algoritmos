@@ -1,0 +1,64 @@
+<!--
+3. Valores Dinâmicos 
+Crie um programa o qual:
+a) O usuário informa números e clica em "Cadastrar"; 
+b) Tenha três botões, para "Ver Índices Pares", "Ver Valores Pares" e "Ver Todos".
+
+OBS: para validar se o valor é par, utilize o resto da divisão por 2.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 03</title>
+</head>
+<body>
+    <h1>Valores Dinâmicos</h1>
+    <span>Insira um número:</span>
+    <input type="text" id="ipt_dinamico">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br> <br>
+    <button onclick="verIndicesPares()">Ver Índices Pares</button>
+    <button onclick="verValoresPares()">Ver Valores Pares</button>
+    <button onclick="verTodos()">Ver Todos</button>
+    <br> <br> 
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    let listaDinamica = [];
+
+    function cadastrar(){
+        let numDinamico = Number(ipt_dinamico.value);
+        listaDinamica.push(numDinamico);
+        div_exibir.innerHTML = `Essa é a nova lista: ${listaDinamica}`;
+    }
+
+    function verIndicesPares(){
+        let msg = '';
+        for(let i = 0; i < listaDinamica.length; i+= 2){
+            msg += `Index ${i}: ${listaDinamica[i]} <br>`;
+        }
+        div_exibir.innerHTML = msg;
+    }
+
+    function verValoresPares(){
+        let msg = '';
+        for(let i = 0; i < listaDinamica.length; i++){
+            if(listaDinamica[i] % 2 == 0){
+                msg += `Index ${i}: ${listaDinamica[i]} <br>`;
+            }
+        }
+        div_exibir.innerHTML = msg;
+    }
+
+    function verTodos(){
+        let msg = '';
+        for(let i = 0; i < listaDinamica.length; i++){
+            msg += `Index ${i}: ${listaDinamica[i]} <br>`;
+        }
+        div_exibir.innerHTML = msg;
+    }
+</script>

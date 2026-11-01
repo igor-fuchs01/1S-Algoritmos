@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 05</title>
+</head>
+<body>
+    <h1>Cadastro de Projetos e Classificação de Experiência Profissional</h1>
+    <span>Insira o nome de cada projeto que já criou na vida: </span>
+    <input type="text" id="ipt_projeto">
+    <button onclick="registrar()">Registrar projeto</button>
+    <button onclick="mostrarProjetos()">Mostrar Projetos</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+
+</body>
+</html>
+<script>
+    let listaProjetos = []
+    function registrar(){
+        let projeto = ipt_projeto.value;
+        let senioridade = '';
+        let msg = '';
+
+        listaProjetos.push(projeto);
+
+        if(listaProjetos.length < 4){
+            senioridade = 'Júnior';
+        } else if(listaProjetos.length < 12){
+            senioridade = 'Pleno';
+        } else {
+            senioridade = 'Sênior';
+        }
+
+        msg = `Você já fez ${listaProjetos.length} projetos. Por isso você é um profissional ${senioridade}`;
+        div_exibir.innerHTML = msg;
+    }
+
+    function mostrarProjetos(){
+        let msg = ``;
+        
+        for(let i = listaProjetos.length - 1;i >= 0; i--){
+            msg += `Posição ${i}: ${listaProjetos[i]} <br>`
+        }
+
+        div_exibir.innerHTML = msg;
+    }
+</script>
