@@ -1,0 +1,123 @@
+<!-- 17. Playlist de Músicas
+Crie um programa o qual:
+
+a) Tenha os campos “Nome da música” e “Duração (em minutos)”, e um botão “Adicionar à playlist”;
+
+b) Ao adicionar, exiba: “Bohemian Rhapsody entrou na playlist!”
+
+c) Não permita nome vazio nem duração menor ou igual a 0. Músicas repetidas são permitidas.
+
+d) Ao clicar em “Ver playlist”, exiba as músicas em ordem inversa e, abaixo:
+
+    Total de músicas: X
+
+    Duração total: Y minutos
+
+    Música mais longa: NOME
+
+e) Tenha um campo “Pesquisar música” e um botão “Pesquisar”. Ao clicar, exiba:
+
+    “Essa música não está na playlist”
+
+OU
+
+    “A música  Bohemian Rhapsody aparece 2 vezes na playlist, nos índices: 1, 4”
+
+OBS: Assim como no exercício 6, utilize o for para encontrar todas as posições, pois o indexOf encontra apenas a primeira. -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 17</title>
+</head>
+<body>
+    <h1>Playlist de Músicas</h1>
+    <span>Nome da música: </span>
+    <input type="text" id="ipt_musica">
+    <br>
+    <span>Duração (em minutos): </span>
+    <input type="text" id="ipt_duracao">
+    <br>
+    <button onclick="adicionarPlaylist()">Adicionar à playlist</button>
+    <button onclick="verPlaylist()">Ver playlist</button>
+    <br> <br>
+    <span>Pesquisar Música:</span>
+    <input type="text" id="ipt_pesquisa">
+    <button onclick="pesquisar()">Pesquisar</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+
+    <script>
+        let listaNomeMusica = [];
+        let listaDuracaoMusica = [];
+
+        function adicionarPlaylist(){
+            let musica = ipt_musica.value;
+            let duracao = Number(ipt_duracao.value);
+
+            if(musica == ''){
+                alert(`O nome da música não pode ser vazio!`);
+            } else if(duracao <= 0){
+                alert('A duração deve ser maior que 0!');
+            } else {
+                listaNomeMusica.push(musica);
+                listaDuracaoMusica.push(duracao);
+
+                div_exibir.innerHTML = `${musica} entrou na playlist!`;
+            }
+        }
+
+        function verPlaylist(){
+            let total = 0;
+            let nomeMaisLonga = listaNomeMusica[0];
+            let duracaoMaisLonga = listaDuracaoMusica[0];
+            let musicasInvertidas = '';
+
+            for(let i = 0; i < listaNomeMusica.length; i++){
+                let duracaoAtual = listaDuracaoMusica[i];
+                let nomeAtual = listaNomeMusica[i];
+
+                if(duracaoAtual > duracaoMaisLonga){
+                    nomeMaisLonga = nomeAtual;
+                    duracaoMaisLonga = duracaoAtual;
+                }
+
+                total += listaDuracaoMusica[i];
+            }
+
+            for(let i = listaNomeMusica.length - 1; i >= 0; i--){
+                musicasInvertidas += `${listaNomeMusica[i]} - ${listaDuracaoMusica[i]} minutos <br>`;
+            }
+
+            div_exibir.innerHTML = `
+            ${musicasInvertidas} <br>
+            Total de músicas: ${listaNomeMusica.length} <br>
+            Duração total: ${total} minutos <br>
+            Música mais longa: ${nomeMaisLonga}`;
+        }
+
+        function pesquisar(){
+            let pesquisa = ipt_pesquisa.value;
+            let quantidade = 0;
+            let indices = '';
+
+            for(let i = 0; i < listaNomeMusica.length; i++){
+                if(listaNomeMusica[i] == pesquisa){
+                    if(quantidade > 0){
+                        indices += ', ';
+                    }
+                    indices += i;
+                    quantidade++;
+                }
+            }
+
+            if(quantidade == 0){
+                div_exibir.innerHTML = `Essa música não está na playlist`;
+            } else {
+                div_exibir.innerHTML = `A música ${pesquisa} aparece ${quantidade} vezes na playlist, nos índices: ${indices}`;
+            }
+        }
+    </script>
+</body>
+</html>

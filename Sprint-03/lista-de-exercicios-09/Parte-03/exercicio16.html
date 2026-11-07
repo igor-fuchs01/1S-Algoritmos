@@ -1,0 +1,107 @@
+<!-- 6. Eleição de Representante de Turma
+Crie um programa o qual:
+
+a) Tenha um ‘combo’ (select/option) “Escolha seu candidato”, com 3 resultados de candidatos.
+
+b) Ao clicar em “Votar”, o voto é registrado num local invisível ao usuário e é exibido: “Voto registrado! Obrigado por participar.”
+
+c) Ao clicar em “Apurar votos”, exiba:
+
+    Total de votos: T
+
+    Mariana: X votos
+
+    Cléber: Y votos
+
+Adalberto: Z votos
+
+d) Abaixo, exiba o resultado:
+
+    “O(A) vencedor(a) é resultado!” (caso um candidato tenha mais votos que os outros)
+
+     “Houve empate!” (caso o maior número de votos se repita)
+
+    “Nenhum voto registrado” (caso o vetor esteja vazio)
+
+OBS: Utilize o for para percorrer o vetor de votos, com uma variável contadora para cada candidato. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 16</title>
+</head>
+<body>
+    <h1>Eleição de Representante de Turma</h1>
+    <span>Escolha seu candidato: </span>
+    <select id="select_candidato">
+        <option>Hideaki</option>
+        <option>Igor</option>
+        <option>Fernando</option>
+    </select>
+    <button onclick="votar()">Votar</button>
+    <button onclick="apurarVotos()">Apurar Votos</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+    let listaVotos = [];
+
+    function votar(){
+        listaVotos.push(select_candidato.value);
+        div_exibir.innerHTML = 'Voto registrado! Obrigado por participar.';
+    }
+
+    function apurarVotos(){
+        let votosHideaki = 0;
+        let votosIgor = 0;
+        let votosFernando = 0;
+
+        for(let i = 0; i < listaVotos.length; i++){
+            let votoAtual = listaVotos[i];
+
+            if(votoAtual == 'Hideaki'){
+                votosHideaki++;
+            } else if(votoAtual == 'Igor') {
+                votosIgor++;
+            } else {
+                votosFernando++;
+            }
+        }
+
+        div_exibir.innerHTML = `
+            Total de votos: ${listaVotos.length}
+            <br>
+            Hideaki: ${votosHideaki} votos
+            <br>
+            Igor: ${votosIgor} votos
+            <br>
+            Fernando: ${votosFernando} votos
+            <br> <br>
+
+        `;
+
+        if(listaVotos.length == 0){
+            div_exibir.innerHTML = `Nenhum voto registrado`;
+        } else {
+            let resultado = 'empate';
+
+            // compara o vencedor
+            if(votosHideaki > votosIgor && votosHideaki > votosFernando){
+                resultado = 'Hideaki';
+            } else if(votosIgor > votosHideaki && votosIgor > votosFernando){
+                resultado = 'Igor';
+            } else if(votosFernando > votosIgor && votosFernando > votosHideaki){
+                resultado = 'Fernando';
+            }
+
+            if(resultado == 'empate'){
+                div_exibir.innerHTML = `Houve empate!`;
+            } else {
+                div_exibir.innerHTML = `O(A) vencedor(a) é ${resultado}!`
+            }
+        }
+        
+    }
+</script>
