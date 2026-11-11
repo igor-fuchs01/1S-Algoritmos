@@ -1,0 +1,66 @@
+<!-- 4. Cadastro de Filmes com Classificação
+Crie um programa o qual:
+
+a) O usuário informe:
+
+nome do filme;
+gênero;
+nota;
+b) Ao clicar em "Cadastrar Filme", crie um objeto JSON chamado filme;
+
+c) Verifique a nota do filme:
+
+se for maior ou igual a 8, crie o atributo classificacao com valor "Filme Excelente";
+caso contrário, "Filme Regular".
+d) Exiba:
+
+Filme: Interestelar
+Gênero: Ficção
+Nota: 9
+Classificação: Filme Excelente
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>Nome do filme:</span>
+    <input type="text" id="ipt_nome">
+    <span>Gênero:</span>
+    <input type="text" id="ipt_genero">
+    <span>Nota:</span>
+    <input type="text" id="ipt_nota">
+    <br> <br>
+    <button onclick="cadastrarFilme()">Cadastrar Filme</button>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+
+    function cadastrarFilme(){
+        let filme = {
+            nome: ipt_nome.value,
+            genero: ipt_genero.value,
+            nota: Number(ipt_nota.value)
+        };
+
+        let classificacao = ``;
+        
+        if(filme.nota >= 8){
+            classificacao = `Filme Excelente`;
+        } else {
+            classificacao = `Filme Regular`;
+        }
+
+        div_exibir.innerHTML = `
+            Filme: ${filme.nome} <br>
+            Gênero: ${filme.genero} <br>
+            Nota: ${filme.nota} <br>
+            Classificação: ${classificacao}
+        `;
+        
+    }
+</script>

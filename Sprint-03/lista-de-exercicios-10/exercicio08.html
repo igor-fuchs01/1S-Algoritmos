@@ -1,0 +1,67 @@
+<!-- 8. Cadastro de Comprador e Produto
+Crie um programa o qual:
+
+a) O usuário informe:
+
+nome do comprador;
+e-mail do comprador;
+nome do produto;
+valor do produto;
+b) Ao clicar em "Finalizar Compra", crie:
+
+um objeto JSON chamado comprador;
+um objeto JSON chamado produto;
+c) Exiba:
+
+Comprador: Carlos | carlos@email.com
+
+Produto: Headset
+Valor: R$250
+
+d) Mostre os dois objetos no console.log().
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>Nome do comprador:</span>
+    <input type="text" id="ipt_nome_comprador">
+    <span>E-mail do comprador:</span>
+    <input type="text" id="ipt_email_comprador">
+    <span>Nome do produto:</span>
+    <input type="text" id="ipt_nome_produto">
+    <span>Valor do produto:</span>
+    <input type="text" id="ipt_valor_produto">
+    <br> <br>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+
+    function finalizarCompra(){
+        let comprador = {
+            nome: ipt_nome_comprador.value,
+            email: ipt_email_comprador.value
+        };
+
+        let produto = {
+            nome: ipt_nome_produto.value,
+            valor: Number(ipt_valor_produto.value)
+        };
+
+        div_exibir.innerHTML = `
+            Comprador: ${comprador.nome} | ${comprador.email} <br> <br>
+            Produto: ${produto.nome} <br>
+            Valor: R$${produto.valor}
+        `;
+
+        console.log(comprador);
+        console.log(produto);
+    }
+
+</script>

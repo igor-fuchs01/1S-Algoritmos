@@ -1,0 +1,59 @@
+<!-- 10. Cadastro de Celulares com Desconto
+Crie um programa o qual:
+
+a) O usuário informe:
+
+marca do celular;
+modelo;
+preço;
+b) Ao clicar em "Cadastrar Celular", crie um objeto JSON chamado celular;
+
+c) Depois do cadastro:
+
+crie um atributo chamado precoDesconto;
+aplique 15% de desconto no preço original;
+d) Exiba:
+
+Marca: Samsung
+Modelo: S25
+Preço Original: R$4000
+Preço com Desconto: R$3400
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>Marca do celular:</span>
+    <input type="text" id="ipt_marca">
+    <span>Modelo:</span>
+    <input type="text" id="ipt_modelo">
+    <span>Preço:</span>
+    <input type="text" id="ipt_preco">
+    <br> <br>
+    <button onclick="cadastrarCelular()">Cadastrar Celular</button>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+
+    function cadastrarCelular(){
+        let celular = {
+            marca: ipt_marca.value,
+            modelo: ipt_modelo.value,
+            preco: Number(ipt_preco.value)
+        };
+
+        celular.precoDesconto = celular.preco * 0.85;
+
+        div_exibir.innerHTML = `
+            Marca: ${celular.marca} <br>
+            Modelo: ${celular.modelo} <br>
+            Preço Original: R$${celular.preco} <br>
+            Preço com Desconto: R$${celular.precoDesconto.toFixed(2)}
+        `;
+    }
+</script>

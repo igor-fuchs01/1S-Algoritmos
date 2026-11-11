@@ -1,0 +1,66 @@
+<!-- 5. Cadastro de Alunos com Situação Escolar
+Crie um programa o qual:
+
+a) O usuário informe:
+
+nome do aluno;
+nota;
+frequência;
+b) Ao clicar em "Analisar Aluno", crie um objeto JSON chamado aluno;
+
+c) O objeto deverá possuir um atributo chamado situacao;
+
+d) Regras:
+
+nota maior ou igual a 6 e frequência maior ou igual a 75 → "Aprovado"
+caso contrário → "Reprovado"
+e) Exiba:
+
+Aluno: Fernanda
+Nota: 8
+Frequência: 90%
+Situação: Aprovado
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>Nome do aluno:</span>
+    <input type="text" id="ipt_nome">
+    <span>Nota:</span>
+    <input type="text" id="ipt_nota">
+    <span>Frequência:</span>
+    <input type="text" id="ipt_frequencia">
+    <br> <br>
+    <button onclick="analisarAluno()">Analisar Aluno</button>
+    <div id="div_exibir"></div>
+</body>
+</html>
+<script>
+
+    function analisarAluno(){
+        let aluno = {
+            nome: ipt_nome.value,
+            nota: Number(ipt_nota.value),
+            frequencia: Number(ipt_frequencia.value)
+        };
+
+        let situacao;
+        if(aluno.nota >= 6 && aluno.frequencia >= 75){
+            situacao = `Aprovado`;
+        } else {
+            situacao = `Reprovado`;
+        }
+
+        div_exibir.innerHTML = `
+            Aluno: ${aluno.nome} <br>
+            Nota: ${aluno.nota} <br>
+            Frequência: ${aluno.frequencia}% <br>
+            Situação: ${situacao}
+        `;
+    }
+</script>
