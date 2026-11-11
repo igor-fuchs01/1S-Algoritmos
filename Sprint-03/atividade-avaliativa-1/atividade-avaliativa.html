@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Os Celtas</title>
+</head>
+<body>
+    <h1>Os Celtas</h1>
+    <!-- 1 -->
+    <h2>REGISTRAR ARMA</h2>
+    Nome da arma:
+    <input type="text" id="ipt_nome_arma">
+    <br> 
+    Tipo da Arma (Corte, Blindagem, Projéteis e Cerco):
+    <input type="text" id="ipt_tipo_arma">
+    <br>
+    Quantidade de Pontos Necessários:
+    <input type="text" id="ipt_pontos_arma">
+    <br>
+    <button onclick="registrar()">Registrar Arma</button>
+    <br> <br>
+    <div id="div_exibir"></div>
+    <br>
+    <!-- 2 -->
+    <h2>ALTERAR PONTOS DA ARMA ESPECIFICADA</h2>
+    Nome da Arma:
+    <input type="text" id="ipt_nome_arma_alterar_pontos">
+    <button onclick="alterarPontosNome()">Alterar Pontos da Arma</button>
+    <br> <br>
+    <div id="div_exibir2"></div>
+    <br>
+    <!-- 3 -->
+    <h2>ACRÉSCIMO DE PONTOS PELO TIPO DA ARMA</h2>
+    Tipo de arma:
+    <input type="text" id="ipt_tipo_arma_alterar_pontos">
+    <button onclick="alterarPontosTipo()">Adicionar Acréscimo</button>
+    <br> <br> 
+    <div id="div_exibir3"></div>
+    <br>
+    <!-- 4 -->
+    <h2>LISTAR TODAS AS ARMAS</h2>
+    Aperte o botão para listar todas as armas:
+    <button onclick="listarTodasArmas()">Listar Armas</button>
+    <br> <br>
+    <div id="div_exibir4"></div>
+    <br>
+    <!-- 5 -->
+    <h2>LISTAR TODAS ARMAS POR TIPO DE ARMA</h2>
+    Informe o tipo da arma:
+    <input type="text" id="ipt_tipo_arma_listar_armas">
+    <button onclick="listarArmasPorTipo()">Listar Armas</button>
+    <br> <br>
+    <div id="div_exibir5"></div>
+    <br>
+
+</body>
+</html>
+<script>
+    let listaNomeArma = [];
+    let listaTipoArma = [];
+    let listaPontosArma = [];
+
+    function registrar(){
+        let nomeArma = ipt_nome_arma.value;
+        let tipoArma = ipt_tipo_arma.value;
+        let pontosArma = Number(ipt_pontos_arma.value);
+
+        // checa por nomes iguais
+        let nomeIgual = false;
+        for(let i = 0; i < listaNomeArma.length; i++){
+            let nomeAtual = listaNomeArma[i];
+            if(nomeArma == nomeAtual){
+                nomeIgual = true;
+            }
+        }
+
+        if(!(tipoArma == 'Corte' || tipoArma == 'Blindagem' || tipoArma == 'Projéteis' || tipoArma == 'Cerco')){ // tipo de armas permitidos
+            alert('O tipo da arma deve ser Corte, Blindagem, Projéteis e Cerco!');
+        } else if(pontosArma < 0) { // pontos maior ou igual a 0
+            alert('A quantidade pontos não pode ser menor que 0!')
+        } else if(nomeIgual) { // nome igual detectado
+            alert('Já existe uma arma com esse nome, nomes iguais não são permitidos!')
+        } else {
+            listaNomeArma.push(nomeArma);
+            listaTipoArma.push(tipoArma);
+            listaPontosArma.push(pontosArma);
+            div_exibir.innerHTML = `Arma registrada com sucesso: ${nomeArma} | ${tipoArma} | ${pontosArma}`;
+        }
+    }
+
+    function alterarPontosNome(){
+        let nomeArma = ipt_nome_arma_alterar_pontos.value;
+        let flagPontosAlterados = false;
+
+        for(let i = 0; i < listaNomeArma.length; i++){
+            let nomeAtual = listaNomeArma[i];
+            if(nomeArma == nomeAtual){
+                listaPontosArma[i] = Number(prompt('Insira a nova quantidade de pontos:'));
+                flagPontosAlterados = true;
+            }
+        }
+
+        if(flagPontosAlterados){
+            div_exibir2.innerHTML = `Pontos alterados!`
+        } else {
+            div_exibir2.innerHTML = `Não foi possível encontrar esse nome de arma!`
+        }
+    }
+
+    function alterarPontosTipo(){
+        let tipoArma = ipt_tipo_arma_alterar_pontos.value;
+        let acrescimoPontos = Number(prompt('Insira o percentual de acréscimo para essas armas (0 a 100):'));
+        let flagPontosAlterados = 0;
+
+        for(let i = 0; i < listaTipoArma.length; i++){
+            let tipoAtual = listaTipoArma[i];
+            if(tipoArma == tipoAtual){
+                listaPontosArma[i] = listaPontosArma[i] + listaPontosArma[i] * acrescimoPontos / 100;
+                flagPontosAlterados++;
+            }
+        }
+
+        if(flagPontosAlterados != 0){
+            div_exibir3.innerHTML = `${flagPontosAlterados} armas tiveram seus pontos alterados!`
+        } else {
+            div_exibir3.innerHTML = `Não foi possível alterar nenhuma arma!`
+        }
+
+    }
+
+    function listarTodasArmas(){
+        let msg = ``;
+        for(let i = listaNomeArma.length - 1; i >= 0; i--){
+            msg += `${i + 1}ª Arma registrada | Nome da Arma: ${listaNomeArma[i]} | Tipo da Arma: ${listaTipoArma[i]} | Pontos da Arma: ${listaPontosArma[i]}`
+            msg += `<br>`;
+        }
+
+        div_exibir4.innerHTML = msg;
+    }
+
+    function listarArmasPorTipo(){
+        let tipoArma = ipt_tipo_arma_listar_armas.value;
+        let msg = ``;
+
+        let maiorQtdPontos = listaPontosArma[0];
+        let menorQtdPontos = listaPontosArma[0];
+        let qtdCadastrada = 0;
+
+        for(let i = 0; i < listaTipoArma.length; i++){
+            let tipoArmaAtual = listaTipoArma[i];
+
+            if(tipoArma == tipoArmaAtual){
+                let pontosAtual = listaPontosArma[i];
+
+                if(pontosAtual > maiorQtdPontos){
+                    maiorQtdPontos = pontosAtual;
+                }
+                if(pontosAtual < menorQtdPontos){
+                    menorQtdPontos = pontosAtual;
+                }
+
+                msg += `${i + 1}ª Arma registrada | Nome da Arma: ${listaNomeArma[i]} | Tipo da Arma: ${listaTipoArma[i]} | Pontos da Arma: ${listaPontosArma[i]} <br>`
+
+                qtdCadastrada++;
+            }
+        }
+
+        if(qtdCadastrada > 0){
+            msg += `<br>
+                Maior quantidade de pontos necessários: ${maiorQtdPontos} <br>
+                Menor quantidade de pontos necessários: ${menorQtdPontos} <br>
+                Quantidade de armas do tipo ${tipoArma}: ${qtdCadastrada} <br>
+            `;
+        } else {
+            msg = `Não foi possível encontrar nenhuma arma!`;
+        }
+        
+        div_exibir5.innerHTML = msg;
+    }
+</script>
