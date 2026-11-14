@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD do Sanji</title>
+</head>
+<body>
+    <h1>Desafio One Piece - CRUD do Sanji</h1>
+    <h3>Parte 1</h3>
+    <span>Cadastrar Estoque de Comidas:</span>
+    <input type="text" id="ipt_cadastrar_estoque">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="verificarQuantidade()">Verificar Quantidade</button>
+    <div id="div_exibir"></div>
+    <h3>Parte 2</h3>
+    <span>Insira o nome da comida para pesquisar: </span>
+    <input type="text" id="ipt_pesquisar">
+    <button onclick="pesquisar()">Pesquisar</button>
+    <button onclick="exibirEstoque()">Exibir Estoque</button>
+    <div id="div_exibir2"></div>
+    <h3>Parte 3</h3>
+    <span>Nome da comida a ser renomeada: </span>
+    <input type="text" id="ipt_comida_ser_renomeada">
+    <span>Nome do renomeio:</span>
+    <input type="text" id="ipt_comida_renomeio">
+    <button onclick="alterarNome()">Alterar Nome</button>
+    <br> <br>
+    <span>Insira o nome da comida para ser removida: </span>
+    <input type="text" id="ipt_remover_comida">
+    <button onclick="removerComida()">Remover Comida</button>
+    <div id="div_exibir3"></div>
+
+</body>
+</html>
+<script>
+    let listaComida = [];
+
+    function cadastrar(){
+        let comidaCadastrada = ipt_cadastrar_estoque.value;
+        listaComida.push(comidaCadastrada);
+    }
+
+    function verificarQuantidade(){
+        let msg;
+
+        if(listaComida.length < 3){
+            msg = 'Desse jeito, o Luffy devora até o navio';
+        } else if(listaComida.length < 8){
+            msg = 'O comilão do Luffy não vai deixar sobrar nenhuma comida';
+        } else if(listaComida.length < 11){
+            msg = 'Assim, talvez sobre um pouco para a tripulação';
+        } else {
+            msg = 'Desse jeito vai ter comida para todo mundo e ainda consigo guardar um pouco para a senhorita Nami!'
+        }
+
+        div_exibir.innerHTML = msg;
+    }
+
+    function pesquisar(){
+        let comidasEncontradas = 0;
+        let comidaPesquisada = ipt_pesquisar.value;
+        let msg = '';
+
+        for(let i = 0; i < listaComida.length; i++){
+            let comidaAtual = listaComida[i];
+
+            if(comidaPesquisada == comidaAtual){
+                comidasEncontradas++;
+            }
+        }
+
+        if(comidasEncontradas > 0){
+            msg = `Temos a comida ${comidaPesquisada} e há ${comidasEncontradas} unidade(s) dela`;
+        } else{
+            msg = `Alguém vai ter que comprar ${comidaPesquisada}, tá fazendo falta...`;
+        }
+
+        div_exibir2.innerHTML = msg;
+    }
+
+    function exibirEstoque(){
+        let matrizComida = [[], []];
+        let msg = '';
+
+        for(let i = 0; i < listaComida.length; i++){
+            let comidaAtual = listaComida[i];
+            let indexComida = matrizComida[0].indexOf(comidaAtual);
+
+            if(indexComida == -1){ // comida não encontrada
+                matrizComida[0].push(comidaAtual);
+                matrizComida[1].push(1);
+            } else {
+                matrizComida[1][indexComida] += 1;
+            }
+        }
+        
+        for(let i = 0; i < matrizComida[0].length; i++){
+            if(matrizComida[1][i] != 1){
+                msg += `- ${matrizComida[0][i]} (${matrizComida[1][i]} unidades) <br>`;
+            } else {
+                msg += `- ${matrizComida[0][i]} (${matrizComida[1][i]} unidade) <br>`;
+            }
+        }
+
+        div_exibir2.innerHTML = msg;
+        
+    }
+    
+    function alterarNome(){
+        let isChanged = false;
+        let nomeParaRenomear = ipt_comida_ser_renomeada.value;
+        let nomeRenomeio = ipt_comida_renomeio.value;
+
+        for(let i = 0; i < listaComida.length; i++){
+            let nomeAtual = listaComida[i];
+            if(nomeAtual == nomeParaRenomear){
+                listaComida[i] = nomeRenomeio;
+                isChanged = true;
+            }
+        }
+
+        if(isChanged){
+            div_exibir3.innerHTML = `A comida '${nomeParaRenomear}' foi alterada para '${nomeRenomeio}'`;
+        } else {
+            div_exibir3.innerHTML = `A comida '${nomeParaRenomear}' não foi encontrada no estoque.`;
+        }
+    }
+
+    function removerComida(){
+        let nomeComida = ipt_remover_comida.value;
+        let isRemoved = false;
+        let novaLista = [];
+
+        for(let i = 0; i < listaComida.length; i++){
+            let comidaAtual = listaComida[i];
+
+            if(comidaAtual == nomeComida){
+                isRemoved = true;
+            } else {
+                novaLista.push(comidaAtual);
+            }
+        }
+
+        listaComida = novaLista;
+
+        if(isRemoved){
+            div_exibir3.innerHTML = `A comida '${nomeComida}' foi removida do estoque.`;
+        } else {
+            div_exibir3.innerHTML = `A comida '${nomeComida}' não está no estoque.`;
+        }
+    }
+</script>
